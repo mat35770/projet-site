@@ -78,7 +78,14 @@ function redirection_db ($bd,$la_requete,$ok_redirection,$ko_redirection,$affich
  * ko_redirection si l'ajout n'a pas fonctionné
  */
 function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
-    $requete_a_tester="SELECT id FROM membres WHERE login='".$_POST['in_login']."';";
+    //on applique des filtres de nettoyage
+    $nom_valide=filter_input(INPUT_POST, "in_nom", FILTER_SANITIZE_SPECIAL_CHARS);
+    $prenom_valide=filter_input(INPUT_POST, "in_prenom", FILTER_SANITIZE_SPECIAL_CHARS);
+    $login_valide=filter_input(INPUT_POST, "in_login", FILTER_SANITIZE_SPECIAL_CHARS);
+    $annee_valide=filter_input(INPUT_POST, "in_annee", FILTER_SANITIZE_SPECIAL_CHARS);
+    $mdp_valide=filter_input(INPUT_POST, "in_mdp", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+    $requete_a_tester="SELECT id FROM membres WHERE login='$login_valide';";
     
     $reponse=$bd->query($requete_a_tester);
     $count=$reponse->rowCount();
@@ -101,12 +108,12 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
         $req=$bd->prepare('INSERT INTO membres(nom, prenom, mail, annee_naissance, password, login) '
                 . 'VALUES(:nom, :prenom, :mail, :annee_naissance, :password, :login)');
         $result=$req->execute(array(
-            'nom'=>$_POST['in_nom'],
-            'prenom'=>$_POST['in_prenom'],
+            'nom'=>$nom_valide,
+            'prenom'=>$prenom_valide,
             'mail'=>'',
-            'annee_naissance'=>$_POST['in_annee'],
-            'password'=>$_POST['in_mdp'],
-            'login'=>$_POST['in_login']
+            'annee_naissance'=>$annee_valide,
+            'password'=>$mdp_valide,
+            'login'=>$login_valide
         ));
         
         //on teste si l'insertion a réussi ou non
