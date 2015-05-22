@@ -3,13 +3,23 @@ include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
 
 
-if (isset($_POST['login'])){
+//tests pour le formulaire inscription
+if (isset($_POST['in_login'])){
+    $bd=connect_db(SERVEUR, UTILISATEUR, MDP);    
+    $ok_redirection='Location: ../vues/rechercher.php';
+    $ko_redirection='Location: ../vues/erreur_in_authentification.php';
+    ajout_membre_db($bd, $ok_redirection, $ko_redirection);   
+}
+
+
+//tests pour le formulaire connexion
+if (isset($_POST['co_login'])){
     $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
     if ($bd != false){
-        $la_requete="SELECT id FROM membres WHERE login='".$_POST['login']."';";
+        $la_requete="SELECT id FROM membres WHERE login='".$_POST['co_login']."' AND password='".$_POST['co_mdp']."';";
         $ok_redirection='Location: ../vues/rechercher.php';
-        $ko_redirection='Location: ../vues/erreur_authentification.php';
-        control_db($bd, $la_requete,$ok_redirection,$ko_redirection); 
+        $ko_redirection='Location: ../vues/erreur_co_authentification.php';
+        redirection_db($bd, $la_requete,$ok_redirection,$ko_redirection); 
     }
 }
 
