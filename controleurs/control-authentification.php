@@ -1,25 +1,15 @@
 <?php
-include ('../include/lib/connexion_db.php');
+include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
 
-
-function control_db ($bd,$la_requete,$affiche=false){
-    $reponse=$bd->query($la_requete);
-    if ($reponse===FALSE){
-        $errInfos=$bd->errorInfo();
-        echo 'requete échouée'.$errInfos[2];
-        return false;
-    }else{
-        header('Location: ../vues/rechercher.php');
-        exit();
-    }
-}
 
 if (isset($_POST['login'])){
     $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
     if ($bd != false){
-        $la_requete="SELECT ".$_POST['login']." FROM membres";
-        control_db($bd, $la_requete); 
+        $la_requete="SELECT id FROM membres WHERE login='".$_POST['login']."';";
+        $ok_redirection='Location: ../vues/rechercher.php';
+        $ko_redirection='Location: ../vues/erreur_authentification.php';
+        control_db($bd, $la_requete,$ok_redirection,$ko_redirection); 
     }
 }
 

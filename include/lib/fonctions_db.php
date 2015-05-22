@@ -11,7 +11,7 @@ function connect_db($serveur,$utilisateur,$mdp){
         print_r($pdo_options);
         echo "</pre>";
         echo 'La connexion a échoué';
-        echo $e->getMessage(); //tester si besoin des parenthèses
+        echo $e->getMessage();
         return false;
             
     }
@@ -43,4 +43,26 @@ function execute_select($bd,$la_requete,$affiche=false){
     }
 echo "<table>";
 return true;
+}
+
+/*fonction qui affiche une page différente en fonction de la requête
+ * ko_redirection si la requête ne renvoie rien
+ * ok_redirection si la requête est bonne
+ * si la requête présente une erreur, l'erreur est affichée
+ */
+function control_db ($bd,$la_requete,$ok_redirection,$ko_redirection,$affiche=FALSE){
+    $reponse=$bd->query($la_requete);
+    $count=$reponse->rowCount();
+    if ($reponse===FALSE){
+        $errInfos=$bd->errorInfo();
+        echo 'requete échouée'.$errInfos[2];
+        return false;
+    }else if($count == 0){
+        header($ko_redirection);
+        exit();
+    }
+    else{
+        header($ok_redirection);
+        exit();
+    }
 }

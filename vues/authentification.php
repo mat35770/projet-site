@@ -69,7 +69,7 @@
                 </tr>                
                 <tr>
                     <th><label for="mdp">mot de passe</label></th>
-                    <td><input type="password" name="mdp" id="mdp" required></td>
+                    <td><input type="password" name="mdp" id="mdp" ></td>
                 </tr>
             </table>
         </fieldset>
