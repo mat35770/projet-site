@@ -129,3 +129,25 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
             
     }
 }
+
+/*
+ * fonction qui permet de lancer un menu déroulant des villes de la base de données
+ */
+function liste_villes($bd) {
+    //permet d'obtenir le nombre de villes
+    $nbr="SELECT id FROM villes";
+    $reponse1=$bd->query($nbr);    
+    $count=$reponse1->rowCount();
+    //affiche les villes
+    for ($i=1; $i<=$count; $i++){                        
+        $la_requete="SELECT nom FROM villes WHERE id=$i;";                        
+        $reponse=$bd->query($la_requete);
+        while ($donnees=$reponse->fetch()){
+            echo "<option value=".$donnees['nom'].">".$donnees['nom']." </option>";                            
+        }
+        $reponse->closeCursor();
+    }  
+}
+
+
+?>

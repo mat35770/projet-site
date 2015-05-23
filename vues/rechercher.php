@@ -1,3 +1,11 @@
+<?php
+include ('../include/lib/fonctions_db.php');
+include ('../include/lib/database.php');
+
+$bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
+                    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +16,7 @@
      
      <link rel="stylesheet" href="../include/css/style.css">
      <link rel="stylesheet" href="../include/css/slider.css">
+     <link rel="stylesheet" href="../include/css/superfish.css">
     
 </head>
 <body>
@@ -22,10 +31,10 @@
         <div class="container_12">
             <div class="grid_12">
                 <ul class="sf-menu">
-                    <li class="rechercher"><a href="index.html">Rechercher</a></li>
+                    <li class="rechercher"><a href="rechercher.php">Rechercher</a></li>
                     
-                    <li class="proposer"><a href="index-4.html">Proposer</a></li>
-                    <li class="menu-about"><a href="index-1.html">MENU</a>
+                    <li class="proposer"><a href="proposer.php">Proposer</a></li>
+                    <li class="menu-about"><a>MENU</a>
                     	<ul>
                             <li><a href="#">PROFIL</a></li>
                             <li><a href="#">VOS ANNONCES</a></li>
@@ -48,40 +57,36 @@
 
 <!--==============================content=================================-->
 
- 
+
 <div id="content">
 	<div class="slider-relative">
             <div class="corps">
                 <div class="rechercher-form">
                     <p>Je cherche une place libre</p>
-                <form method="post" action="">
+                    <form method="post" action="../controleurs/control-rechercher.php">
                    
                    
-            <img src="images/depart.png" alt="carte" />
-            <select name="villedepart" id="villedepart">
-                <option value="paris">Paris</option>
-                <option value="troyes">Troyes</option>
-                <option value="nice">Nice</option>
-            </select>
-                    
-
-            <img src="images/arrivee.png" alt="arrivee" />
+                    <img src="../include/images/depart.png" alt="carte" />
+            <select name="villedepart" id="villedepart"> 
+                    <?php                    
+                    liste_villes($bd);
+                    ?>
+                
+            </select>                   
+                    <img src="../include/images/arrivee.png" alt="arrivee" />
             <select name="villearrivee" id="villearrivee">
-                <option value="paris">Paris</option>
-                <option value="troyes">Troyes</option>
-                <option value="nice">Nice</option>
+                <?php
+                liste_villes($bd);
+                ?>
             </select>
-                    <img id="image-date" src="images/date.png" alt="date" />
-                    <input type="date" name="date">
-                    
+                    <img id="image-date" src="../include/images/date.png" alt="date" />
+                    <input type="date" name="date">                    
                         
-                    <input type=submit class="bouton-rechercher" value="Rechercher"/>
-
-                   
+                    <input type=submit class="bouton-rechercher" value="Rechercher"/>                   
                
                 </form>    
                 </div> 
-                   <img src="images/carte.jpg" alt="carte" />
+                <img src="../include/images/carte.jpg" alt="carte" />
             </div> 
                 
 
