@@ -142,12 +142,10 @@ function liste_villes($bd) {
     for ($i=1; $i<=$count; $i++){                        
         $la_requete="SELECT nom FROM villes WHERE id=$i;";                        
         $reponse=$bd->query($la_requete);
-        while ($donnees=$reponse->fetch()){
+        while ($donnees=$reponse->fetch()){            
             echo "<option value=".$donnees['nom'].">".$donnees['nom']." </option>";                            
         }
         $reponse->closeCursor();
     }  
 }
 
-
-?>

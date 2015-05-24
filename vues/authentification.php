@@ -77,28 +77,7 @@
                 <input type="submit" value="Envoyer" />
         </fieldset>  
     </form>
-        
-    
-
-	
-    
-    
-    <!--==============================footer=================================-->
-<footer>
-	<div class="container_12">
-		<div class="grid_8">
-			<span>BassBass Car &copy; 2015 | Privacy Policy | Website  created by Clemouuche</span>
-		</div>
-        <div class="grid_4">
-        	<ul class="soc-icon">
-                    <li><a href="#"><img src="../include/images/icon-3.png" alt=""></a></li>
-                    <li><a href="#"><img src="../include/images/icon-2.png" alt=""></a></li>
-                    <li><a href="#"><img src="../include/images/icon-1.png" alt=""></a></li>
-            </ul>
-        </div>
-	</div>
-</footer>
-    </body>
-</html>
+ 
+<?php include ('../include/lib/footer.html'); ?>
 
 
