@@ -1,5 +1,5 @@
 INSERT INTO trajets
-VALUES ('','Rennes','Troyes','Un deuxième trajet','2015-05-23',16,2,0,30);
+VALUES ('','Rennes','Troyes','2015-05-23',16,2,0,30);
 
 INSERT INTO villes 
 VALUES ('','Troyes', 'France'),
@@ -26,3 +26,4 @@ VALUES (1,2);
 
 INSERT INTO membres_has_trajets
 VALUES (1,3);
+

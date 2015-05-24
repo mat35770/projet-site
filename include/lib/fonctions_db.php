@@ -149,3 +149,22 @@ function liste_villes($bd) {
     }  
 }
 
+//fonction qui permet d'ajouter une ville dans la base de données
+function ajout_ville_db ($bd,$nom_valide,$affiche=FALSE){ 
+    //on vérifie si la ville appartient à la base de données
+    $requete_a_tester="SELECT * FROM villes WHERE nom='$nom_valide'";
+    $reponse=$bd->query($requete_a_tester);
+    $count=$reponse->rowCount();
+
+    //si la requete présente une erreur on affiche le message d'erreur
+    if ($reponse===FALSE){
+        $errInfos=$bd->errorInfo();
+        echo 'requete échouée'.$errInfos[2];
+        return false; 
+    }
+    
+    //si la ville n'est pas présente dans la base de données, on l'ajoute   
+    else if($count == 0){ 
+        $bd->exec ("INSERT INTO villes VALUES ('','$nom_valide')");
+    }
+}

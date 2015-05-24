@@ -20,23 +20,16 @@
 <div id="content">
 	<div class="slider-relative">
         <div class="corps">
-            <form method="post" action="">
+            <form method="post" action="../controleurs/control-proposer.php">
                 <h1>Publier une annonce</h1>
                 <h2>Itinéraire</h2>
                 <div>   
-            <label for="villedepart">Ville de départ</label><br />
-            <select name="villedepart" id="villedepart">
-                <option value="paris">Paris</option>
-                <option value="troyes">Troyes</option>
-                <option value="nice">Nice</option>
-            </select>
+            <label for="ville_depart">Ville de départ</label><br />
+            <input type="text" name="ville_depart" id="ville_depart" required>
             </br></br>
-            <label for="villearrivee">Ville d'arrivée</label><br />
-            <select name="villearrivee" id="villearrivee">
-                <option value="paris">Paris</option>
-                <option value="troyes">Troyes</option>
-                <option value="nice">Nice</option>
-            </select>
+            <label for="ville_arrivee">Ville d'arrivée</label><br />
+            <input type="text" name="ville_arrivee" id="ville_arrivee" required>
+               
                 </div>
                 <h2>Date et heure</h2>
                 <div>   
@@ -72,7 +65,7 @@
                 <h2>Prix</h2>
                 <div>
                     
-                    <input type="number" value="prix"> €
+                    <input type="number" name="prix" value="prix" required> €
                     
                 </div>
                 
