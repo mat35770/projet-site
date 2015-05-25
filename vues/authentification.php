@@ -81,6 +81,7 @@
         </fieldset>  
     </form>
  
-<?php include ('../include/lib/footer.html'); ?>
+</div>
+</html>
 
 
