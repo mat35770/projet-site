@@ -1,1 +1,0 @@
-INSERT INTO `membres`(`id`, `nom`, `prenom`, `mail`, `annee_naissance`, `password`, `login`) VALUES (0,'del','mathieu','m@hotmail.fr',1995,'0','mat')
