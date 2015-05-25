@@ -29,10 +29,10 @@
                 <div class="authentification-banner">INSCRIVEZ-VOUS OU CONNECTEZ-VOUS</div>
     
     <form class="form-inscription" method="post" action="../controleurs/control-authentification.php">
-            
+            <legend>S'enregistrer</legend>
             <fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
-                <legend>S'enregistrer</legend>
+                
                 <tr>
                     
                     <td><input type="text" name="in_nom" id="in_nom" placeholder="Nom" autofocus required></td>  
@@ -62,9 +62,10 @@
         </form>
      
     <form class="form-connexion" method="post" action="../controleurs/control-authentification.php">
-        <fieldset>
+        <legend>Connexion</legend>
+		<fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
-                <legend>Connexion</legend>
+                
                 <tr>
                     
                     <td><input type="text" name="co_login" id="co_login" placeholder="Login" required></td>
@@ -82,6 +83,7 @@
 	</div>
  
 </div>
+</body>
 </html>
 
 
