@@ -19,67 +19,67 @@
 
 <!--==============================content=================================-->
 
- 
-<div id="content">
-	 <li>
-                <div class="banner">INSCRIVEZ-VOUS OU CONNECTEZ-VOUS</div>
-         </li>
-                
-</div>
+
+     <div class="corps-authentification">           
+
         
        
     <!-- formulaire inscription -->
+	
+                <div class="authentification-banner">INSCRIVEZ-VOUS OU CONNECTEZ-VOUS</div>
+    
     <form class="form-inscription" method="post" action="../controleurs/control-authentification.php">
             
             <fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
                 <legend>S'enregistrer</legend>
                 <tr>
-                    <th><label for="in_nom">Nom</label></th>
-                    <td><input type="text" name="in_nom" id="in_nom" autofocus required></td>  
+                    
+                    <td><input type="text" name="in_nom" id="in_nom" placeholder="Nom" autofocus required></td>  
                 </tr>
                 <tr>
-                    <th><label for="in_prenom">Prénom</label></th>
-                    <td><input type="text" name="in_prenom" id="in_prenom" required></td>
+                    
+                    <td><input type="text" name="in_prenom" id="in_prenom" placeholder="Prénom" required></td>
                 </tr>
                 <tr>
-                    <th><label for="in_annee">Année de naissance</label></th>
-                    <td><input type="text" name="in_annee" id="in_annee" required></td>
+                    
+                    <td><input type="text" name="in_annee" id="in_annee" placeholder="Année de naissance" required></td>
                 </tr>
                 <tr>
-                    <th><label for="in_login">Login</label></th>
-                    <td><input type="text" name="in_login" id="in_login" required></td>
+                    
+                    <td><input type="text" name="in_login" id="in_login" placeholder="Login" required></td>
                 </tr>                
                 <tr>
-                    <th><label for="in_mdp">mot de passe</label></th>
-                    <td><input type="password" name="in_mdp" id="in_mdp" required></td>
+                    
+                    <td><input type="password" name="in_mdp" id="in_mdp" placeholder="Password" required></td>
                 </tr>
                 </table>
                 </fieldset>
         
-            <fieldset>
-                <input type="submit" value="Envoyer" />
-            </fieldset>  
+            
+                <input id="authentification-submit" type="submit" value="S'inscrire" />
+             
         </form>
-    
+     
     <form class="form-connexion" method="post" action="../controleurs/control-authentification.php">
         <fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
                 <legend>Connexion</legend>
                 <tr>
-                    <th><label for="co_login">Login</label></th>
-                    <td><input type="text" name="co_login" id="co_login" required></td>
+                    
+                    <td><input type="text" name="co_login" id="co_login" placeholder="Login" required></td>
                 </tr>                
                 <tr>
-                    <th><label for="co_mdp">mot de passe</label></th>
-                    <td><input type="password" name="co_mdp" id="co_mdp" required></td>
+                    
+                    <td><input type="password" name="co_mdp" id="co_mdp" placeholder="Password" required></td>
                 </tr>
             </table>
         </fieldset>
-        <fieldset>
-                <input type="submit" value="Envoyer" />
-        </fieldset>  
+        
+                <input id="authentification-submit" type="submit" value="Se connecter" />
+         
     </form>
+	</div>
  
 </div>
 </html>
