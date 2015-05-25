@@ -181,12 +181,14 @@ div .profil-identite h1{
     border: 1px solid #BABABA;
     border-radius: 2px;
     width: 960px;
+	padding: 10px 10px 10px 10px;
 }
 
 .rechercher-form p{
     color: white;
     font-size: 20px;
     margin-left: 10px;
+	
 }
 
 .rechercher-form select {
