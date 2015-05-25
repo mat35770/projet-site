@@ -11,13 +11,12 @@ if (isset($_POST['date'])and (!empty($_POST['date']))){
     $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
     if ($bd != false){        
         ajout_ville_db($bd, $ville_dep_valide);
-        ajout_ville_db($bd, $ville_ar_valide);
-        $la_requete="INSERT INTO trajets VALUES ('','$ville_dep_valide','$ville_ar_valide','".$_POST['date']."',"
-                . "'".$_POST['heure']."','".$_POST['nbp']."',0,'".$_POST['prix']."');";
-    
+        ajout_ville_db($bd, $ville_ar_valide);    
+        
+        $bd->exec ("INSERT INTO trajets VALUES ('','$ville_dep_valide','$ville_ar_valide','".$_POST['date']."',"
+                . "'".$_POST['heure']."','".$_POST['nbp']."',0,'".$_POST['prix']."');");
         
     }
-    
 }
 
  else {
