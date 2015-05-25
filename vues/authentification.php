@@ -5,9 +5,12 @@
      <title>BassBass Car</title>
      <meta charset="utf-8">
      <link rel="icon" href="../include/images/icone-carsharing.gif">
+	 <link rel="stylesheet" href="../include/css/authentification.css">
+	 
     <!--
     <link rel="stylesheet" href="../include/css/style.css">
     <link rel="stylesheet" href="../include/css/slider.css">
+	<link rel="stylesheet" href="../include/css/authentification.css">
     -->
 </head>
 <body>
@@ -26,7 +29,7 @@
         
        
     <!-- formulaire inscription -->
-    <form method="post" action="../controleurs/control-authentification.php">
+    <form class="form-inscription" method="post" action="../controleurs/control-authentification.php">
             
             <fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
@@ -59,7 +62,7 @@
             </fieldset>  
         </form>
     
-    <form method="post" action="../controleurs/control-authentification.php">
+    <form class="form-connexion" method="post" action="../controleurs/control-authentification.php">
         <fieldset>
             <table border="0" cellspacing="2" cellpadding="1" >
                 <legend>Connexion</legend>

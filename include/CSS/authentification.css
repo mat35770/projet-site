@@ -1,0 +1,11 @@
+.form-inscription fieldset{
+   width: 350px;
+}
+
+.form-inscription legend {
+   color: blue;
+}
+
+form {
+display: inline-block;
+}
