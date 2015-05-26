@@ -1,8 +1,7 @@
 <?php
 include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
-include ('Fonctions-temporaires.php');
-
+include ('../include/lib/fonctions_mise_en_page.php');
 ?>
 
 <!DOCTYPE html>

@@ -1,3 +1,10 @@
+<?php
+include ('../include/lib/fonctions_db.php');
+include ('../include/lib/database.php');
+session_start();    
+$bd=connect_db(SERVEUR, UTILISATEUR, MDP);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,67 +99,78 @@
                     <div>
                     <h1>Informations personnelles</h1>
                     <div>
-                           <p>Nom:</p> 
-                           <p>Prenom:</p>
-                           <p>Age:</p>
+                           <p>Login :</p> 
+                           <p>Nom :</p> 
+                           <p>Prenom :</p>
+                           <p>Année de naissance :</p>
                     </div>
                     <div>
-                        <form method="post" action="ProfilUser.php"/>
+                        <form method="post" action="control-profil-user.php"/>
                         <?php
-                        
-                        if(!isset($_POST['nom']) OR !isset($_POST['prenom']) OR !isset($_POST['age'])){
-                            $nom="Fisherman";
-                            $prenom="Larry";
-                            $age="23";}
-                        else{
-                            $nom=$_POST['nom'];
-                            $prenom=$_POST['prenom'];
-                            $age=$_POST['age'];
-                            }    
-                            
-                            printf("<p><input type='text' name='nom' value='%s' /></p>", $nom);
-                            printf("<p><input type='text' name='prenom' value='%s' /></p>", $prenom);
-                            printf("<p><input type='text' name='age' value='%s' /></p>", $age);
+                            //on récupère l'id de l'utilisateur
+                            $req1="SELECT * FROM membres WHERE login='".$_SESSION['login']."';";
+                            $rep1=$bd->query($req1);
+                            $donnees_membre=$rep1->fetch();                                                    
+                         
+                            printf("<p><input type='text' name='login' value='%s' /></p>", $donnees_membre['login']);
+                            printf("<p><input type='text' name='nom' value='%s' /></p>", $donnees_membre['nom']);
+                            printf("<p><input type='text' name='prenom' value='%s' /></p>", $donnees_membre['prenom']);
+                            printf("<p><input type='text' name='annee_naissance' value='%s' /></p>", $donnees_membre['annee_naissance']);
                         ?>    
                     </div>
                     </div>
                 </div>
                 <div class="profil-vehicule">
                     <div>
-                    <h1>Vehicule</h1>
+                    <h1>Véhicule</h1>
                     <div>
-                    <p>Marque:</p>
-                    <p>Confort:</p>
-                    <p>Nombre de place:</p>
-                    <p>Couleur:</p>
+                    <p>Marque :</p>
+                    <p>Modèle :</p>
+                    <p>Couleur :</p>
+                    <p>Année :</p>
+                    
                     </div>
                     <div>
-                        <?php
-                        
-                        if(!isset($_POST['marque']) OR !isset($_POST['confort']) OR !isset($_POST['nbp']) OR !isset($_POST['couleur'])){
-                            $marque="Audi";
-                            $confort="Luxe";
-                            $nbp="3";
-                            $couleur="noir";    
-                        }
-                        else{
-                            $marque=$_POST['marque'];
-                            $confort=$_POST['confort'];
-                            $nbp=$_POST['nbp'];
-                            $couleur=$_POST['couleur'];
+                        <?php    
+                            //on test si l'utilisateur a une voiture
+                            $membres_id=$donnees_membre['id'];
+                            $req2="SELECT * FROM vehicules WHERE membres_id=$membres_id;";
+                            $rep2=$bd->query($req2);
+                            $donnees_vehicule=$rep2->fetch();
+                            $count=$rep2->rowCount();
                             
-                            }  
+                            //si la requete présente une erreur on affiche le message d'erreur
+                            if ($rep2===FALSE){
+                                $errInfos=$bd->errorInfo();
+                                echo 'requete échouée'.$errInfos[2];
+                                return false; 
+                            }
+                            //si l'utilisateur n'a pas de voiture 
+                            else if($count == 0){
+                                printf("<p><input type='text' name='marque' /></p>");
+                                printf("<p><input type='text' name='modele' /></p>");                            
+                                printf("<p><input type='text' name='couleur' /></p>");
+                                printf("<p><input type='text' name='annee' /></p>");
+                            
+                            }
+                            
+                            //si l'utilisateur a un véhicule on lui montre ses caractéristiques
+                            // avec une possibilité de les modifier
+                            else{
+                                printf("<p><input type='text' name='marque' value='%s' /></p>", $donnees_vehicule['marque']);
+                                printf("<p><input type='text' name='modele' value='%s' /></p>", $donnees_vehicule['modele']);                            
+                                printf("<p><input type='text' name='couleur' value='%s' /></p>", $donnees_vehicule['couleur']);
+                                printf("<p><input type='text' name='annee_mise_en_circulation' value='%s' /></p>", 
+                                        $donnees_vehicule['annee_mise_en_circulation']);
+                            }
                         
-                            printf("<p><input type='text' name='marque' value='%s' /></p>", $marque);
-                            printf("<p><input type='text' name='confort' value='%s' /></p>", $confort);
-                            printf("<p><input type='text' name='nbp' value='%s' /></p>", $nbp);
-                            printf("<p><input type='text' name='couleur' value='%s' /></p>", $couleur);
+                            
                         ?>
                             
                     </div>
                     </div>
                 </div>
-                <input type="submit" name="Modifier"/>
+                    <input type="submit" name="Modifier" value="ajouter un véhicule"/>                
                 </div>
             </div>
         </div>

@@ -40,6 +40,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                             printf("<h1><b>%s %s</b></h1>",$prenom, $nom);
                             printf("<p>année de naissance : %d</p>", $age);
                         printf("</div>");
+                        
                         printf("<p><img src=%s alt=%s /> %d - %d avis</p>","../include/images/etoile-avis.png", "etoile-avis", $moyenne_avis, $nb_avis);
                     printf("<img src=%s alt=%s />","../include/images/reglage-icon.png", "reglage-icon");
                     printf("</div>");
