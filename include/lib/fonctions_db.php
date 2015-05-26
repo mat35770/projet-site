@@ -147,8 +147,8 @@ function liste_villes($bd) {
             echo "<option value=".$donnees['nom'].">".$donnees['nom']." </option>";                            
         }
         $reponse->closeCursor();
-    }
-    
+    } 
+       
 }
 
 //fonction qui permet d'ajouter une ville dans la base de données

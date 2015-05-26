@@ -37,14 +37,28 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
                     <img src="../include/images/depart.png" alt="carte" />
             <select name="ville_depart" id="ville_depart"> 
                     <?php                    
-                    liste_villes($bd);
-                    ?>
-                
+                    liste_villes($bd);                    
+                    ?>                    
             </select>                   
                     <img src="../include/images/arrivee.png" alt="arrivee" />
             <select name="ville_arrivee" id="ville_arrivee">
-                <?php
                 
+               
+                <!--  formulaire dynamique (ne fonctionne pas)
+                <option value="ville_a">
+                     <script>
+                        var list = document.getElementById("ville_depart");
+                        list.addEventListener('change', function() {
+
+                        // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+                          var texte = list.options[list.selectedIndex].innerHTML;
+                           //document.write(texte);
+                       }, true);
+                       
+                        
+                    </script></option>-->
+                
+                <?php                    
                    liste_villes($bd); 
                 ?>
             </select>

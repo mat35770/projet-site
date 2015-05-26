@@ -1,3 +1,34 @@
+<?php
+    include ('../include/lib/fonctions_db.php');
+    include ('../include/lib/database.php');
+
+    session_start();
+    
+    $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
+    
+    $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+    $rep1=$bd->query($req1);
+    $donnees_membre=$rep1->fetch();
+    echo $donnees_membre['id'];
+    
+    /*$req2="SELECT * FROM vehicules WHERE membres_id='".$_donnees_membre['id']."';";
+    $reponse=$bd->query($req2);
+    $count=$reponse->rowCount();
+            
+    //si la requete présente une erreur on affiche le message d'erreur
+    if ($reponse===FALSE){
+        $errInfos=$bd->errorInfo();
+        echo 'requete échouée'.$errInfos[2];
+        return false; 
+    }
+    
+    //si la ville n'est pas présente dans la base de données, on l'ajoute   
+    else if($count == 0){ 
+        header('Location: ../vues/rechercher.php');
+    }*/
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
