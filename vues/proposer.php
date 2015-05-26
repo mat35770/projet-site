@@ -11,10 +11,11 @@
     $donnees_membre=$rep1->fetch();
     echo $donnees_membre['id'];
     
-    /*$req2="SELECT * FROM vehicules WHERE membres_id='".$_donnees_membre['id']."';";
+    $req2="SELECT * FROM vehicules WHERE membres_id='".$_donnees_membre['id']."';";
     $reponse=$bd->query($req2);
     $count=$reponse->rowCount();
-            
+    echo $count;
+    /*        
     //si la requete présente une erreur on affiche le message d'erreur
     if ($reponse===FALSE){
         $errInfos=$bd->errorInfo();
