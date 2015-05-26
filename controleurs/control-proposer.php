@@ -15,21 +15,31 @@ if (isset($_POST['date'])and (!empty($_POST['date']))){
     if ($bd != false){
         //on ajoute les villes dans la base de données si elles n'y sont pas
         ajout_ville_db($bd, $ville_dep_valide);
-        ajout_ville_db($bd, $ville_ar_valide);    
+        ajout_ville_db($bd, $ville_ar_valide);
+        
+        //on récupère l'id de la ville de départ
+        $req1="SELECT id FROM villes WHERE nom='$ville_dep_valide'";
+        $rep1=$bd->query($req1);    
+        $donnees_ville_dep=$rep1->fetch();
+        
+        //on récupère l'id de la ville d'arrivée
+        $req2="SELECT id FROM villes WHERE nom='$ville_ar_valide'";
+        $rep2=$bd->query($req2);    
+        $donnees_ville_ar=$rep2->fetch();
         
         //on ajoute le trajet dans la base de données
-        $bd->exec ("INSERT INTO trajets VALUES ('','$ville_dep_valide','$ville_ar_valide','".$_POST['date']."',"
+        $bd->exec ("INSERT INTO trajets VALUES ('','".$donnees_ville_dep['id']."','".$donnees_ville_ar['id']."','".$_POST['date']."',"
              . "'".$_POST['heure']."','".$_POST['nbp']."',0,'".$_POST['prix']."');");    
         
         //on récupère l'id du membre
-        $req4="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
-        $rep4=$bd->query($req4);
-        $donnees_membre=$rep4->fetch();        
+        $req3="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+        $rep3=$bd->query($req3);
+        $donnees_membre=$rep3->fetch();        
         
         //on récupère l'id du trajet
-        $req1="SELECT id FROM trajets ORDER BY id DESC LIMIT 1 ";
-        $rep1=$bd->query($req1);    
-        $donnees_trajet=$rep1->fetch();
+        $req4="SELECT id FROM trajets ORDER BY id DESC LIMIT 1 ";
+        $rep4=$bd->query($req4);    
+        $donnees_trajet=$rep4->fetch();
         
         //on ajoute dans la table membres_has_trajets l'id du membre et du trajet
         $bd->exec("INSERT INTO membres_has_trajets VALUES ('".$donnees_membre['id']."','".$donnees_trajet['id']."');");

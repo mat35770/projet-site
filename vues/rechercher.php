@@ -44,7 +44,8 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
                     <img src="../include/images/arrivee.png" alt="arrivee" />
             <select name="ville_arrivee" id="ville_arrivee">
                 <?php
-                liste_villes($bd);
+                
+                   liste_villes($bd); 
                 ?>
             </select>
                     <img id="image-date" src="../include/images/date.png" alt="date" />
