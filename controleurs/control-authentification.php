@@ -25,10 +25,16 @@ if (isset($_POST['co_login'])and (!empty($_POST['co_login']))){
         $mdp_valide=filter_input(INPUT_POST, "co_mdp", FILTER_SANITIZE_SPECIAL_CHARS);
         $_SESSION['login']=$login_valide;
         
-        $la_requete="SELECT id FROM membres WHERE login='$login_valide' AND password='$mdp_valide';";
-        $ok_redirection='Location: ../vues/rechercher.php';
-        $ko_redirection='Location: ../vues/erreur_co_authentification.php';
-        redirection_db($bd, $la_requete,$ok_redirection,$ko_redirection); 
+        if ($login_valide === "admin" AND $mdp_valide === "admin"){
+            header('Location: ../vues/admin_home.php');
+        }
+        else {
+            $la_requete="SELECT id FROM membres WHERE login='$login_valide' AND password='$mdp_valide';";
+            $ok_redirection='Location: ../vues/rechercher.php';
+            $ko_redirection='Location: ../vues/erreur_co_authentification.php';
+            redirection_db($bd, $la_requete,$ok_redirection,$ko_redirection);
+        }        
+         
     }
 }
 
