@@ -36,8 +36,21 @@ include ('Fonctions-temporaires.php');
                             $ville_ar=$_POST['ville_arrivee'];
                             $date=$_POST['date'];
                             
+                            //on récupère l'id de la ville de départ
+                            $req_v_d="SELECT id FROM villes WHERE nom='$ville_dep';";
+                            $rep_v_d=$bd->query($req_v_d);
+                            $donnees_ville=$rep_v_d->fetch();
+                            $ville_depart_id=$donnees_ville['id'];
+                            
+                            //on récupère l'id de la ville d'arrivée
+                            $req_v_a="SELECT id FROM villes WHERE nom='$ville_ar';";
+                            $rep_v_a=$bd->query($req_v_a);
+                            $donnees_ville=$rep_v_a->fetch();
+                            $ville_arrivee_id=$donnees_ville['id'];
+                            
+                            
                             //on compte le nombre de trajets
-                            $req1="SELECT * FROM trajets WHERE ville_depart='$ville_dep' AND ville_arrivee='$ville_ar' AND date='$date'";
+                            $req1="SELECT * FROM trajets WHERE ville_depart_id='$ville_depart_id' AND ville_arrivee_id='$ville_arrivee_id' AND date='$date'";
                             $rep1=$bd->query($req1);    
                             $count=$rep1->rowCount();
                             
@@ -68,14 +81,19 @@ include ('Fonctions-temporaires.php');
                                 $count2=$rep6->rowCount();
                                  
                                 
-                                // Problème de moyenne, seul la première note est affichée
+                                /*
+                                 *  Problème de moyenne, seul la première note est affichée
+                                 */
                                 $commentaire_id=$donnees2['commentaires_id'];                                
                                 $req7="SELECT note FROM commentaires WHERE id='$commentaire_id'";
                                 $rep7=$bd->query($req7);
-                                $donnees_note=$rep7->fetch();
+                                $donnees_note=$rep7->fetch();   
                                 
                                 //appel à la fonction qui génère les annonces
-                                annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $donnees_membre['annee_naissance'], $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'], $donnees_vehicule['modele'], $donnees_trajet['prix']);
+                                annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $donnees_membre['annee_naissance'],
+                                        $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
+                                        $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
+                                        $ville_dep, $ville_ar);
                                 
                                 $rep3->closeCursor();
                                 $rep4->closeCursor();
