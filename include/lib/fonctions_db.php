@@ -118,6 +118,7 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
         
         //on teste si l'insertion a réussi ou non
         if ($result){
+            $_SESSION['login']=$login_valide;
             header($ok_redirection);
             exit();
         }

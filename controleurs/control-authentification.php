@@ -2,6 +2,8 @@
 include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
 
+session_start();
+
 
 //tests pour le formulaire inscription
 if (isset($_POST['in_login'])and (!empty($_POST['in_login']))){
@@ -21,6 +23,7 @@ if (isset($_POST['co_login'])and (!empty($_POST['co_login']))){
         //on applique des filtres de nettoyage
         $login_valide=filter_input(INPUT_POST, "co_login", FILTER_SANITIZE_SPECIAL_CHARS);
         $mdp_valide=filter_input(INPUT_POST, "co_mdp", FILTER_SANITIZE_SPECIAL_CHARS);
+        $_SESSION['login']=$login_valide;
         
         $la_requete="SELECT id FROM membres WHERE login='$login_valide' AND password='$mdp_valide';";
         $ok_redirection='Location: ../vues/rechercher.php';

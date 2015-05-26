@@ -21,7 +21,7 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
 </head>
 <body>
 
-<<?php include ('../include/lib/header.html');?>
+<?php include ('../include/lib/header.html');?>
 
 <!--==============================content=================================-->
 
