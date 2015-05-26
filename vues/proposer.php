@@ -6,27 +6,37 @@
     
     $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
     
-    $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
-    $rep1=$bd->query($req1);
-    $donnees_membre=$rep1->fetch();
-    echo $donnees_membre['id'];
-    
-    $req2="SELECT * FROM vehicules WHERE membres_id='".$_donnees_membre['id']."';";
-    $reponse=$bd->query($req2);
-    $count=$reponse->rowCount();
-    echo $count;
-    /*        
-    //si la requete présente une erreur on affiche le message d'erreur
-    if ($reponse===FALSE){
-        $errInfos=$bd->errorInfo();
-        echo 'requete échouée'.$errInfos[2];
-        return false; 
+    //si la personne est connectée
+    if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
+        
+        //on récupère l'id de l'utilisateur
+        $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+        $rep1=$bd->query($req1);
+        $donnees_membre=$rep1->fetch();
+        $membres_id=$donnees_membre['id'];
+        
+        //on test si l'utilisateur a une voiture
+        $req2="SELECT * FROM vehicules WHERE membres_id=$membres_id;";
+        $reponse=$bd->query($req2);
+        $count=$reponse->rowCount();         
+
+        //si la requete présente une erreur on affiche le message d'erreur
+        if ($reponse===FALSE){
+            $errInfos=$bd->errorInfo();
+            echo 'requete échouée'.$errInfos[2];
+            return false; 
+        }
+        //si l'utilisateur n'a pas de voiture on le renvoie sur la page recherchée
+        else if($count == 0){        
+        header('Location: ../vues/rechercher.php');
+    }
     }
     
-    //si la ville n'est pas présente dans la base de données, on l'ajoute   
-    else if($count == 0){ 
-        header('Location: ../vues/rechercher.php');
-    }*/
+    
+    //si la personne n'est pas connectée on la renvoie sur la page authentification  
+    else { 
+        header('Location: ../vues/authentification.php');
+    }
 ?>
 
 
