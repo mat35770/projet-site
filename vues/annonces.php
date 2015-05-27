@@ -92,7 +92,7 @@ include ('../include/lib/fonctions_mise_en_page.php');
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $donnees_membre['annee_naissance'],
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
-                                        $ville_dep, $ville_ar);
+                                        $ville_dep, $ville_ar,$trajet_id);
                                 
                                 $rep3->closeCursor();
                                 $rep4->closeCursor();
