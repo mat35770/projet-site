@@ -12,12 +12,14 @@
   
   
 }
+/* Bandeau */
 
 .header {
-  border: solid black 1px;
+  border: solid #BABABA 1px;
   margin: -50px -10px 0px -10px;
-  background-color:  black;
+  background-color:  #0ba9ef;
   padding: 0px 170px 0px 170px;
+  
 }
 
 
@@ -27,16 +29,22 @@
   
 }
 
+/*Texte des boutons */
+
 .header li a{
   color: white;
   font-family: Arial,Helvetica,sans-serif;
 
 }
 
+/* Menu déroulant */
 li:hover ul.header-menu{
   display: block;
   border-top: none;
   box-shadow: 0px 1px 1px black;
+  position: absolute;
+  z-index: 2;
+  background-color: white;
 }
 
 ul  ul {
@@ -48,8 +56,10 @@ li:hover ul.header-menu {
   
 }
 
+/* Texte des boutons du menu-déroulant :hover*/
 li:hover ul.header-menu a{
-  color: black;
+  color: #DF7401;
+  font-size: 12px;
 }
 
 li:hover{
@@ -57,8 +67,9 @@ li:hover{
   
 }
 
+/*Texte des boutons :hover*/
 li:hover a {
-  color: black;
+  color: #DF7401;
   
   
 }
@@ -68,7 +79,7 @@ li:hover a {
 }
 
 .header li.li-header-menu{
-  margin-left: 255px;
+  margin-left: 245px;
 }
 
 .entete{
@@ -77,13 +88,14 @@ li:hover a {
   
 }
 
+/*Titre du header*/
 .entete p {
   display: inline-block;
   font-size: 45px;
   position: relative;
   top: -10px;
   left: 10px;
-  color: black;
+  color: #FF8000;
   
   
 }
