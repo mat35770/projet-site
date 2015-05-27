@@ -1,8 +1,9 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include ('../include/lib/fonctions_db.php');
+include ('../include/lib/database.php');
 
+$bd=connect_db(SERVEUR, UTILISATEUR, MDP);
+
+$la_requete="SELECT * FROM trajets";
+execute_select($bd, $la_requete);
