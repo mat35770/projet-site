@@ -1,0 +1,172 @@
+.bouton-rechercher{
+    color: white;
+    cursor:pointer;
+    border: none;
+    background-color: #ffbf00;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 18px;
+
+    
+}
+.bouton-rechercher:hover{
+    background-color: #e0a800;
+    cursor:pointer;
+    border: none;
+    color:white;
+    
+}
+
+.corps > .rechercher-form {
+    display: inline-block;
+    background-color: #0ba9ef;
+    border: 1px solid #BABABA;
+    border-radius: 2px;
+    width: 960px;
+	padding: 10px 10px 10px 10px;
+	margin-top: 10px;
+}
+
+.rechercher-form p{
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+	
+}
+
+.rechercher-form select {
+    width: 240px;
+    height: 35px;
+    border-radius: 6px;
+    margin-left: 10px;  
+    padding-left: 10px;
+    border-left: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border:none;
+	
+    
+}
+.rechercher-form input {
+    width: 150px;
+    height: 35px;
+    border-radius: 4px;
+    margin-left: 30px;
+    padding-left: 10px;
+    
+}
+
+.rechercher-form img{
+    margin-right: -15px;
+    margin-top: 0px;
+	margin-bottom:-13px;
+	
+    height: 35px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-left: 20px;
+	
+}
+.rechercher-form input{
+    margin-left:10px;
+    border-left: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border: none;
+    
+}
+#image-date {
+    height: 35px;
+    margin-top: 0px;
+	margin-bottom: -14px;
+	
+    
+}
+
+
+
+.corps {
+    width:1000px;
+    margin-left: 170px;
+    
+    background-color: white;
+    padding-top: 0px;
+    color: black;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    border: #BABABA 1px solid;
+    border-top: none;
+    
+}
+#submit {
+    color: white;
+    cursor:pointer;
+    width: 110px;
+    height: 35px;
+    border: none;
+    background-color: #0ba9ef;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+#submit:hover {
+    color: white;
+    cursor:pointer;
+    width: 110px;
+    height: 35px;
+    border: none;
+    background-color: #0b81b6;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-left: 300px;
+    margin-top: 20px;
+    
+}
+.corps form h1 {
+    margin-bottom: 50px;
+    color: black;
+    font-size: 24px;
+    border-top: #BABABA solid 1px;
+    padding-top: 5px;
+    margin-top: 50px;
+    
+    
+    
+}
+.corps form h2 {
+    border:1px solid #BABABA ;
+    border-radius: 2px;
+    color: black;
+    background-color: #F5F6F6;
+    font-size: 18px;
+    padding: 8px 0px 8px 10px;
+    width: 400px;
+    margin-top: 20px;
+    
+}
+
+.corps form div {
+    border:1px solid #BABABA;
+    border-radius: 2px;
+    padding: 15px 0px 15px 10px; 
+    background-color: #E8E9E9;
+    border-top: none;
+    width: 400px;
+    
+    
+}
+
+#signin {
+    float: left;
+    display: inline-block;
+    margin-left: 350px;
+    margin-top: -240px;
+    
+}
+#login {
+    margin-left: 170px;
+    display: inline-block;
+    margin-bottom: 150px;
+    margin-top: -280px;
