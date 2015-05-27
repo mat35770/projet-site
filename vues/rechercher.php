@@ -36,7 +36,7 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
                    
                    
                     <img src="../include/images/depart.png" alt="carte" />
-            <select name="ville_depart" id="ville_depart"> 
+                    <select name="ville_depart" id="ville_depart"> 
                     <?php                    
                     liste_villes($bd);                    
                     ?>                    

@@ -42,7 +42,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         printf("</div>");
                         
                         printf("<p><img src=%s alt=%s /> %d - %d avis</p>","../include/images/etoile-avis.png", "etoile-avis", $moyenne_avis, $nb_avis);
-                    printf("<img src=%s alt=%s />","../include/images/reglage-icon.png", "reglage-icon");
+                    
                     printf("</div>");
                     printf("<div class=%s>", "annonce-trajet");
                         printf("<div>");
@@ -58,8 +58,9 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         printf("<h1><b>%d€</b></h1>", $prix);
                         printf("<h3>par place</h3>");
                         printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);
+						printf("<input class=%s type=%s value=%s>","annonce-reserver","submit","Reserver");
                     printf("</div>");
-                    printf("<div><img src=%s alt=%s/></div>","../include/images/delete-icon.png","delete-icon"); 
+                    printf("<div><a class=%s href=%s><img src=%s alt=%s></a>","delete-button","supprimer.php?id=<? echo $donnees['login']?>","../include/images/delete-icon.png","delete-icon"); 
                 printf("</div>");
                 printf("</div>");
                 

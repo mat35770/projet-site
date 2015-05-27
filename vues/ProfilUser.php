@@ -13,7 +13,7 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
      <link rel="icon" href="../include/images/icone-carsharing.gif">
      <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
      <!--<link rel="stylesheet" href="../include/css/style.css">-->
-     <link rel="stylesheet" href="../include/css/slider.css">
+     <link rel="stylesheet" href="../include/css/profil.css">
      <link rel="stylesheet" href="../include/css/annonce.css">
 	 <link rel="stylesheet" href="../include/css/header.css">
      
@@ -112,10 +112,10 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                             $rep1=$bd->query($req1);
                             $donnees_membre=$rep1->fetch();                                                    
                          
-                            printf("<p><input type='text' name='login' value='%s' /></p>", $donnees_membre['login']);
-                            printf("<p><input type='text' name='nom' value='%s' /></p>", $donnees_membre['nom']);
-                            printf("<p><input type='text' name='prenom' value='%s' /></p>", $donnees_membre['prenom']);
-                            printf("<p><input type='text' name='annee_naissance' value='%s' /></p>", $donnees_membre['annee_naissance']);
+                            printf("<p>%s</p>", $donnees_membre['login']);
+                            printf("<p>%s</p>", $donnees_membre['nom']);
+                            printf("<p>%s</p>", $donnees_membre['prenom']);
+                            printf("<p>%s</p>", $donnees_membre['annee_naissance']);
                         ?>    
                     </div>
                     </div>
@@ -157,10 +157,10 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                             //si l'utilisateur a un véhicule on lui montre ses caractéristiques
                             // avec une possibilité de les modifier
                             else{
-                                printf("<p><input type='text' name='marque' value='%s' /></p>", $donnees_vehicule['marque']);
-                                printf("<p><input type='text' name='modele' value='%s' /></p>", $donnees_vehicule['modele']);                            
-                                printf("<p><input type='text' name='couleur' value='%s' /></p>", $donnees_vehicule['couleur']);
-                                printf("<p><input type='text' name='annee_mise_en_circulation' value='%s' /></p>", 
+                                printf("<p>%s</p>", $donnees_vehicule['marque']);
+                                printf("<p>%s</p>", $donnees_vehicule['modele']);                            
+                                printf("<p>%s</p>", $donnees_vehicule['couleur']);
+                                printf("<p>%s</p>", 
                                         $donnees_vehicule['annee_mise_en_circulation']);
                             }
                         
@@ -169,8 +169,9 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                             
                     </div>
                     </div>
+					<input id="profil-submit" type="submit" name="Modifier" value="ajouter un véhicule"/>
                 </div>
-                    <input type="submit" name="Modifier" value="ajouter un véhicule"/>                
+                                    
                 </div>
             </div>
         </div>

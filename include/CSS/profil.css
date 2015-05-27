@@ -1,0 +1,266 @@
+.profil > div > input{
+    margin-left: 750px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    
+}
+
+.profil-identite input{
+    margin-bottom: -15px;
+    margin-top: -10px;
+    padding-left: 5px;
+    
+}
+.profil-vehicule input{
+    margin-bottom: -15px;
+    margin-top: -10px;
+    padding-left: 5px;
+    
+}
+
+.certified {
+    margin-left: 300px;
+    width: 25px;
+    height: 25px;
+    
+}
+
+.corps > .profil {
+    width: 900px;
+    padding: 10px 0px 50px 25px;
+    border: 1px solid #BABABA;
+    background-color: #E8E9E9;
+    border-top: none;
+      
+}
+
+.corps > .profil > div {
+    display: inline-block;
+    
+}
+.profil-vehicule {
+
+    background-color: #F3F3F3;
+    border: 1px solid #BABABA;
+    margin-top: 10px;
+    width: 400px;
+    height: 200px;
+    padding-left: 10px;
+    margin-left: 400px;
+}
+div .profil-vehicule h1{
+    
+    color: black;
+    font-size: 24px;
+    padding: 10px 0px 10px 15px;
+    border-bottom: 1px solid #BABABA;
+}
+.profil-vehicule div div { 
+    display: inline-block;
+}
+
+.profil-vehicule p{
+
+    font-size: 12px;
+    margin-top: -10px;
+    
+    padding: 5px;
+}
+
+.profil-identite {
+
+    background-color: #F3F3F3;
+    border: 1px solid #BABABA;
+    margin-top: -450px;
+    width: 400px;
+    height: 200px;
+    padding-left: 10px;
+    margin-left: 400px;
+    
+    
+}
+div .profil-identite h1{
+    
+    color: black;
+    font-size: 24px;
+    padding: 10px 0px 10px 20px;
+    border-bottom: 1px solid #BABABA;
+}
+
+.profil-identite div div {
+    display: inline-block;
+	
+}
+
+.profil-identite p{
+
+    font-size: 12px;
+    margin-top: -10px;
+    
+    padding: 5px;
+}
+
+
+.avis h1 p {
+    margin-left: -110px;
+    padding-top: -10px;
+    margin-right: 10px;
+    margin-top: -5px;
+    
+}
+
+.profil-1 > img {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 20px;
+    padding-left: 50px;
+}
+.profil-1 {
+    float: left;
+    
+}
+
+.profil h1 {
+    margin-bottom: 20px;
+    color: black;
+    font-size: 24px;
+    padding-top: 25px;
+    padding-left: 120px;
+    border-bottom: 1px solid #BABABA;
+    margin-left: 0px;
+    padding-bottom: 10px;
+    
+}
+
+.avis img {
+    height: 20px;
+    width: 20px;
+    display: inline-block; 
+    
+}
+.avis p{
+    display: inline-block;
+    margin-left: 130px;
+    font-size: 12px;
+    margin-top: 2px;
+    border: 1px solid #BABABA;
+    padding: 7px;
+}
+
+.profil .avis {
+    background-color: #F3F3F3;
+    border: 1px solid #BABABA;
+    margin-top: 10px;
+    width: 310px;
+    height: 450px;
+    padding-left: 10px;}
+	
+	.corps {
+    width:1000px;
+    margin-left: 170px;
+    background-color: white;
+    padding-top: 0px;
+    color: black;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    border: #BABABA 1px solid;
+    border-top: none;
+    
+}
+#submit {
+    color: white;
+    cursor:pointer;
+    width: 110px;
+    height: 35px;
+    border: none;
+    background-color: #0ba9ef;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+#submit:hover {
+    color: white;
+    cursor:pointer;
+    width: 110px;
+    height: 35px;
+    border: none;
+    background-color: #0b81b6;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-left: 300px;
+    margin-top: 20px;
+    
+}
+.corps form h1 {
+    margin-bottom: 50px;
+    color: black;
+    font-size: 24px;
+    border-top: #BABABA solid 1px;
+    padding-top: 5px;
+    margin-top: 50px;
+    
+    
+    
+}
+.corps form h2 {
+    border:1px solid #BABABA ;
+    border-radius: 2px;
+    color: black;
+    background-color: #F5F6F6;
+    font-size: 18px;
+    padding: 8px 0px 8px 10px;
+    width: 400px;
+    margin-top: 20px;
+    
+}
+
+.corps form div {
+    border:1px solid #BABABA;
+    border-radius: 2px;
+    padding: 15px 0px 15px 10px; 
+    background-color: #E8E9E9;
+    border-top: none;
+    width: 400px;
+    
+    
+}
+
+#signin {
+    float: left;
+    display: inline-block;
+    margin-left: 350px;
+    margin-top: -240px;
+    
+}
+#login {
+    margin-left: 170px;
+    display: inline-block;
+    margin-bottom: 150px;
+    margin-top: -280px;
+}
+
+#profil-submit {
+    color: white;
+    cursor:pointer;
+    padding: 0px 10px 0px 10px; 
+    height: 35px;
+    border: none;
+    background-color: #0ba9ef;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 10px 20px 0px 225px;
+}
+
+#profil-submit:hover {
+    color: white;
+    cursor:pointer;
+    padding: 0px 10px 0px 10px; 
+    height: 35px;
+    border: none;
+    background-color: #0b81b6;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 10px 20px 0px 225px;
+}
