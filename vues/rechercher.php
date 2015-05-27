@@ -14,9 +14,10 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
      <link rel="icon" href="../include/images/icone-carsharing.gif">
      <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
      
-     <link rel="stylesheet" href="../include/css/style.css">
+     <!--<link rel="stylesheet" href="../include/css/style.css">-->
      <link rel="stylesheet" href="../include/css/slider.css">
      <link rel="stylesheet" href="../include/css/superfish.css">
+	 <link rel="stylesheet" href="../include/css/header.css">
     
 </head>
 <body>

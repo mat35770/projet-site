@@ -10,11 +10,12 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
 <head>
      <title>BassBass Car</title>
      <meta charset="utf-8">
-    <link rel="icon" href="../include/images/icone-carsharing.gif">
+     <link rel="icon" href="../include/images/icone-carsharing.gif">
      <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
-     <link rel="stylesheet" href="../include/css/style.css">
+     <!--<link rel="stylesheet" href="../include/css/style.css">-->
      <link rel="stylesheet" href="../include/css/slider.css">
      <link rel="stylesheet" href="../include/css/annonce.css">
+	 <link rel="stylesheet" href="../include/css/header.css">
      
     
 </head>
@@ -24,7 +25,6 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
     
 <!--==============================Content=================================-->
 
- 
 <div id="content">
 	<div class="slider-relative">
         <div class="corps">
@@ -180,4 +180,7 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
 </div>
 
     
-<?php include ('../include/lib/footer.html');
+<?php include ('../include/lib/footer.html');?>
+
+</body>
+</html>
