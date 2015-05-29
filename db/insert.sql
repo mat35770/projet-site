@@ -2,7 +2,8 @@
 VALUES (0,'del','mathieu','m@hotmail.fr',1995,'0','mat')
 
 INSERT INTO trajets
-VALUES ('','1','2','2015-05-23',16,2,0,30);
+
+
 
 INSERT INTO villes 
 VALUES ('','Troyes'),
