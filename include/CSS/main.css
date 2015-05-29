@@ -1,0 +1,19 @@
+.corps {
+  background-color: white;
+  margin-right: 150px;
+  margin-left: 150px;
+  padding-bottom: 500px;
+  padding-right: 0px;
+  border-top: none;
+  border: 1px solid #BABABA;
+  position: relative;
+}
+
+.conteneur {
+  background-color: #BABABA;
+  margin-left:-10px;
+  margin-right: -10px;
+  position: absolute;
+  height: 750px;
+  
+}

@@ -1,16 +1,16 @@
-INSERT INTO `membres`(`id`, `nom`, `prenom`, `mail`, `annee_naissance`, `password`, `login`)
+﻿INSERT INTO `membres`(`id`, `nom`, `prenom`, `mail`, `annee_naissance`, `password`, `login`)
 VALUES (0,'del','mathieu','m@hotmail.fr',1995,'0','mat')
 
 INSERT INTO trajets
-VALUES ('','Rennes','Troyes','2015-05-23',16,2,0,30);
+VALUES ('','1','2','2015-05-23',16,2,0,30);
 
 INSERT INTO villes 
-VALUES ('','Troyes', 'France'),
-     ('','Rennes', 'France'),
-     ('','Tours', 'France'),
-     ('','Paris', 'France'),
-     ('','Lille', 'France'),
-     ('','Lyon', 'France');
+VALUES ('','Troyes'),
+     ('','Rennes'),
+     ('','Tours'),
+     ('','Paris'),
+     ('','Lille'),
+     ('','Lyon');
 
 INSERT INTO vehicules
 VALUES (1,'renault','noir','scenic',2006,1);

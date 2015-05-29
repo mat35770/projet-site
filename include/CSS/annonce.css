@@ -1,3 +1,19 @@
+.annonce {
+  font-family: Arial,Helvetica,sans-serif;
+  width: 750px;
+  padding-top: 20px;
+  margin-left: 268px;
+  border-bottom: solid #BABABA 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-right: 20px;
+  
+}
+
+.annonce:hover {
+    background-color: #E0F8F7;
+}
+
 .annonce-personne div {
     display: inline-block;
     margin: 0px 8px 12px 0px;
@@ -28,19 +44,6 @@
 
 .annonce > div {
     display: inline-block;
-}
-
-div > .corps .annonce {
-    padding-top: 20px;
-    margin-left: 300px;
-    border-bottom: solid #BABABA 1px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    margin-right: 20px;
-}
-
-div > .corps .annonce:hover {
-    background-color: #E0F8F7;
 }
 
 .annonce-trajet h1 {
@@ -96,9 +99,12 @@ div .annonce-prix h3 {
     display: inline-block;
 }
 
+/*delete-button*/
 .annonce-prix img {
     height: 20px;
     width:20px;
+	position: relative;
+	bottom: 130px;
     
 }
 
@@ -130,3 +136,4 @@ div .annonce-prix h3 {
     font-size: 18px;
     margin: 40px 0px 0px 0px;
 }
+

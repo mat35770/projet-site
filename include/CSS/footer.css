@@ -1,0 +1,19 @@
+.footer {
+  background-color: #A9E2F3;
+  margin-left: 0px;
+  margin-right: 0px;
+  
+  height: 75px;
+}
+.footer div, .footer div ul li{
+  display: inline-block;
+  
+}
+
+.footer div span {
+  margin-left: 150px;
+}
+
+.footer div ul{
+  margin-left: 380px;
+}

@@ -18,6 +18,8 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
      <link rel="stylesheet" href="../include/css/rechercher.css">
      <link rel="stylesheet" href="../include/css/superfish.css">
 	 <link rel="stylesheet" href="../include/css/header.css">
+	 <link rel="stylesheet" href="../include/css/footer.css">
+	 
     
 </head>
 <body>
@@ -27,8 +29,8 @@ $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);
 <!--==============================content=================================-->
 
 
-<div id="content">
-	<div class="slider-relative">
+<div id="conteneur">
+	<div>
             <div class="corps">
                 <div class="rechercher-form">
                     <p>Je cherche une place libre</p>

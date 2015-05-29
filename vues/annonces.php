@@ -11,9 +11,12 @@ include ('../include/lib/fonctions_mise_en_page.php');
      <meta charset="utf-8">
      <link rel="icon" href="../include/images/icone-carsharing.gif">
      <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
-     <link rel="stylesheet" href="../include/css/style.css">
-     <link rel="stylesheet" href="../include/css/slider.css">
+     <!--<link rel="stylesheet" href="../include/css/style.css">-->
+     <!--<link rel="stylesheet" href="../include/css/slider.css">-->
      <link rel="stylesheet" href="../include/css/annonce.css">
+	 <link rel="stylesheet" href="../include/css/header.css">
+	 <link rel="stylesheet" href="../include/css/main.css">
+	 <link rel="stylesheet" href="../include/css/footer.css">
      
 </head>
 <body>
@@ -23,8 +26,8 @@ include ('../include/lib/fonctions_mise_en_page.php');
 <!--==============================content=================================-->
 
  
-<div id="content">
-	<div class="slider-relative">
+
+	<div class="conteneur">
             <div class="corps">              
                 
                 <?php
@@ -92,7 +95,7 @@ include ('../include/lib/fonctions_mise_en_page.php');
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $donnees_membre['annee_naissance'],
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
-                                        $ville_dep, $ville_ar);
+                                        $ville_dep, $ville_ar,$trajet_id);
                                 
                                 $rep3->closeCursor();
                                 $rep4->closeCursor();
@@ -109,9 +112,12 @@ include ('../include/lib/fonctions_mise_en_page.php');
 
         </div>
 
-     </br></br> </br></br> </br></br> </br></br> </br></br> </br></br> </br></br> </br></br> </br></br>
-</div>
+    
+
 
    
 
-<?php include ('../include/lib/footer.html');
+<?php include ('../include/lib/footer.html');?>
+
+</body>
+</html>
