@@ -35,58 +35,43 @@ session_start();
                 $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);                           
                 
                 //on récupère l'id de l'utilisateur
-                $req0="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
-                $rep0=$bd->query($req0);
-                $donnees_utilisateur=$rep0->fetch();
-                $utilisateur_id=$donnees_utilisateur['id']; 
+                $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+                $rep1=$bd->query($req1);
+                $donnees_utilisateur=$rep1->fetch();
+                $utilisateur_id=$donnees_utilisateur['id'];                         
                 
-                //on récupère les données de la recherche
-                            $ville_dep=$_POST['ville_depart'];
-                            $ville_ar=$_POST['ville_arrivee'];
-                            $date=$_POST['date'];
-                            
-                            //on récupère l'id de la ville de départ
-                            $req_v_d="SELECT id FROM villes WHERE nom='$ville_dep';";
-                            $rep_v_d=$bd->query($req_v_d);
-                            $donnees_ville=$rep_v_d->fetch();
-                            $ville_depart_id=$donnees_ville['id'];
-                            
-                            //on récupère l'id de la ville d'arrivée
-                            $req_v_a="SELECT id FROM villes WHERE nom='$ville_ar';";
-                            $rep_v_a=$bd->query($req_v_a);
-                            $donnees_ville=$rep_v_a->fetch();
-                            $ville_arrivee_id=$donnees_ville['id'];
-                            
-                            
                             //on compte le nombre de trajets
-                            $req1="SELECT * FROM trajets WHERE ville_depart_id='$ville_depart_id' AND ville_arrivee_id='$ville_arrivee_id' AND date='$date'";
+                            $req1="SELECT * FROM membres_has_trajets WHERE membres_id=$utilisateur_id";
                             $rep1=$bd->query($req1);    
                             $count=$rep1->rowCount();
-                            if ($count == 1)
-                                echo "<h3>$count annonce correspond à votre recherche</h3>";
-                            else
-                                echo "<h3>$count annonces correspondent à votre recherche</h3>";
+                            if ($count <= 1)
+                                echo "<h3>Vous avez réservé $count trajet</h3>";
+                            else 
+                                echo "<h3>Vous avez réservé $count trajets</h3>";
                             
                             //pour chaque trajet on affiche les informations
-                            while ($donnees_trajet=$rep1->fetch()){     
-                                
-                               //sélection des informations du trajet 
-                                $trajet_id=$donnees_trajet['id'];
-                                $membres_id=$donnees_trajet['membres_id'];                                
+                            while ($donnees_membres_has_trajets=$rep1->fetch()){     
+                              
+                                $trajet_id=$donnees_membres_has_trajets['trajets_id'];                                                            
+                                $req3="SELECT * FROM trajets WHERE id=$trajet_id";
+                                $rep3=$bd->query($req3);
+                                $donnees_trajet=$rep3->fetch();
+                                $conducteur_id=$donnees_trajet['membres_id'];
                                 
                                 //sélection des informations du conducteur                                                             
-                                $req4="SELECT nom, prenom, annee_naissance FROM membres WHERE id='$membres_id'";
+                                $req4="SELECT nom, prenom, annee_naissance FROM membres WHERE id='$conducteur_id'";
                                 $rep4=$bd->query($req4);
                                 $donnees_membre=$rep4->fetch();
                                 
                                 
                                 //sélection du modèle de la voiture
-                                $req5="SELECT modele FROM vehicules WHERE membres_id='$membres_id'";
+                                $req5="SELECT modele FROM vehicules WHERE membres_id='$conducteur_id'";
                                 $rep5=$bd->query($req5);
-                                $donnees_vehicule=$rep5->fetch();
+                                $donnees_vehicule=$rep5->fetch();                              
+                                
                                 
                                 //sélection des commentaires du conducteur
-                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='$membres_id'";
+                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='$conducteur_id'";
                                 $rep6=$bd->query($req6);
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
@@ -99,6 +84,16 @@ session_start();
                                 $rep7=$bd->query($req7);
                                 $donnees_note=$rep7->fetch();  
                                 
+                                $req8="SELECT nom FROM villes WHERE id='".$donnees_trajet['ville_depart_id']."';";
+                                $rep8=$bd->query($req8);
+                                $donnees_ville_dep=$rep8->fetch();
+                                $ville_dep=$donnees_ville_dep['nom'];
+                                
+                                $req9="SELECT nom FROM villes WHERE id='".$donnees_trajet['ville_arrivee_id']."';";
+                                $rep9=$bd->query($req9);
+                                $donnees_ville_ar=$rep9->fetch();
+                                $ville_ar=$donnees_ville_ar['nom'];
+                                
                                 $annee=date('Y');
                                 $age=$annee-$donnees_membre['annee_naissance'];
                                 
@@ -106,7 +101,7 @@ session_start();
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
-                                        $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $membres_id);
+                                        $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $conducteur_id);
                                 
                                 $rep4->closeCursor();
                                 $rep5->closeCursor();

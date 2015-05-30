@@ -31,7 +31,7 @@ function annonce($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $v
                 
 }
 
-function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $voiture, $prix, $nb_places_libres, $ville_depart, $ville_arrivee,$trajet_id)
+function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $voiture, $prix, $nb_places_libres, $ville_depart, $ville_arrivee,$trajet_id, $utilisateur_id, $conducteur_id)
 {
                 printf("<div class=%s>","annonce");
                     printf("<div class=%s>", "annonce-personne");
@@ -57,13 +57,14 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                     printf("<div>");
                         printf("<h1><b>%d€</b></h1>", $prix);
                         printf("<h3>par place</h3>");
-                        printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);						
+                        printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);
+                        if ($utilisateur_id != $conducteur_id){
                             printf("<a class=%s href=%s%d>%s</a>","annonce-reserver","../controleurs/control-reserver.php?id=", $trajet_id,"Reserver"); 
-
+                        }
                     printf("</div>");
-
+                    if ($conducteur_id == $utilisateur_id){
                   printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a>","delete-button","../controleurs/control-supprimer_trajet.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon"); 
-
+                    }
 
                 printf("</div>");
                 printf("</div>");
