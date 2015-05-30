@@ -58,7 +58,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         printf("<h1><b>%d€</b></h1>", $prix);
                         printf("<h3>par place</h3>");
                         printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);
-						printf("<a class=%s href=%s>%s</a>","annonce-reserver","unepage.php","Reserver");
+						printf("<a class=%s href=%s>%s</a>","annonce-reserver","control-reserver.php","Reserver");
                     printf("</div>");
 
                   printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a>","delete-button","supprimer.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon"); 
