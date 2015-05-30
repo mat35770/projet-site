@@ -13,16 +13,8 @@
         header("Location: authentification.php");
         exit();
     }
-     
-    
-    //si la personne est connectée
-    if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
-        
-        //on récupère l'id de l'utilisateur
-        $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
-        $rep1=$bd->query($req1);
-        $donnees_membre=$rep1->fetch();
-        $membres_id=$donnees_membre['id'];
+
+        $membres_id=$_SESSION['id'];
         
         //on test si l'utilisateur a une voiture
         $req2="SELECT * FROM vehicules WHERE membres_id=$membres_id;";
@@ -39,13 +31,7 @@
         else if($count == 0){        
         header('Location: ../vues/rechercher.php');
     }
-    }
-    
-    
-    //si la personne n'est pas connectée on la renvoie sur la page authentification  
-    else { 
-        header('Location: ../vues/authentification.php');
-    }
+
 ?>
 
 

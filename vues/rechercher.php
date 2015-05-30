@@ -49,30 +49,19 @@ if ($count == 0){
                    
                     <img src="../include/images/depart.png" alt="carte" />
                     <select name="ville_depart" id="ville_depart"> 
-                    <?php                    
-                    liste_villes($bd);                    
+                    <?php
+                    $req="SELECT DISTINCT ville_depart_id FROM trajets";
+                    $champ="ville_depart_id";
+                    liste_villes($bd,$req,$champ);                    
                     ?>                    
             </select>                   
                     <img src="../include/images/arrivee.png" alt="arrivee" />
             <select name="ville_arrivee" id="ville_arrivee">
                 
-               
-                <!--  formulaire dynamique (ne fonctionne pas)
-                <option value="ville_a">
-                     <script>
-                        var list = document.getElementById("ville_depart");
-                        list.addEventListener('change', function() {
-
-                        // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
-                          var texte = list.options[list.selectedIndex].innerHTML;
-                           //document.write(texte);
-                       }, true);
-                       
-                        
-                    </script></option>-->
-                
-                <?php                    
-                   liste_villes($bd); 
+                <?php
+                    $req1="SELECT DISTINCT ville_arrivee_id FROM trajets";
+                    $champ1="ville_arrivee_id";
+                    liste_villes($bd,$req1,$champ1); 
                 ?>
             </select>
                     <img id="image-date" src="../include/images/date.png" alt="date" />
