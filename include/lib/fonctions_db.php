@@ -48,30 +48,6 @@ echo "<table>";
 return true;
 }
 
-
-
-/*fonction qui affiche une page différente en fonction de la requête
- * ko_redirection si la requête ne renvoie rien
- * ok_redirection si la requête est bonne
- * si la requête présente une erreur, l'erreur est affichée
- */
-function redirection_db ($bd,$la_requete,$ok_redirection,$ko_redirection,$affiche=FALSE){
-    $reponse=$bd->query($la_requete);
-    $count=$reponse->rowCount();
-    if ($reponse===FALSE){
-        $errInfos=$bd->errorInfo();
-        echo 'requete échouée'.$errInfos[2];
-        return false;
-    }else if($count == 0){
-        header($ko_redirection);
-        exit();
-    }
-    else{
-        header($ok_redirection);
-        exit();
-    }
-}
-
 /*
  * fonction qui permet d'ajouter un membre et de le rediriger vers une page
  * ok_redirection si l'ajout a fonctionné
@@ -87,7 +63,7 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
     
     $requete_a_tester="SELECT id FROM membres WHERE login='$login_valide';";
     
-    $reponse=$bd->query($requete_a_tester);
+    $reponse=$bd->query($requete_a_tester);     
     $count=$reponse->rowCount();
     
     //si la requete présente une erreur on affiche le message d'erreur
@@ -117,6 +93,8 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
         
         //on teste si l'insertion a réussi ou non
         if ($result){
+            $donnees_membre=$reponse->fetch();
+            $_SESSION['id']=$donnees_membre['id'];
             $_SESSION['login']=$login_valide;
             header($ok_redirection);
             exit();

@@ -5,6 +5,15 @@
     session_start();
     
     $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
+    //on test si la personne qui visionne la page est bien un membre du site
+    $req="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+    $rep=$bd->query($req);
+    $count=$rep->rowCount();
+    if ($count == 0){
+        header("Location: authentification.php");
+        exit();
+    }
+     
     
     //si la personne est connectée
     if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
