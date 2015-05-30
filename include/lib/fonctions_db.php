@@ -105,12 +105,11 @@ function ajout_membre_db ($bd,$ok_redirection,$ko_redirection,$affiche=FALSE){
     //sinon on insère les informations du nouveau membre dans la base de données et
     //on le renvoie sur la page rechercher un trajet
     else{
-        $req=$bd->prepare('INSERT INTO membres(nom, prenom, mail, annee_naissance, password, login) '
-                . 'VALUES(:nom, :prenom, :mail, :annee_naissance, :password, :login)');
+        $req=$bd->prepare('INSERT INTO membres(nom, prenom, annee_naissance, password, login, argent) '
+                . 'VALUES(:nom, :prenom, :annee_naissance, :password, :login, 0)');
         $result=$req->execute(array(
             'nom'=>$nom_valide,
             'prenom'=>$prenom_valide,
-            'mail'=>'',
             'annee_naissance'=>$annee_valide,
             'password'=>$mdp_valide,
             'login'=>$login_valide
