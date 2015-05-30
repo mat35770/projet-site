@@ -38,7 +38,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         printf("<div class=%s><img src=%s alt=%s /></div>", "photo-annonce","../include/images/idpicture.jpg", "idpicture");
                         printf("<div>");
                             printf("<h1><b>%s %s</b></h1>",$prenom, $nom);
-                            printf("<p>année de naissance : %d</p>", $age);
+                            printf("<p>%d ans</p>", $age);
                         printf("</div>");
                         
                         printf("<p><img src=%s alt=%s /> %d - %d avis</p>","../include/images/etoile-avis.png", "etoile-avis", $moyenne_avis, $nb_avis);
@@ -57,11 +57,12 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                     printf("<div>");
                         printf("<h1><b>%d€</b></h1>", $prix);
                         printf("<h3>par place</h3>");
-                        printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);
-						printf("<a class=%s href=%s>%s</a>","annonce-reserver","control-reserver.php","Reserver");
+                        printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);						
+                            printf("<a class=%s href=%s%d>%s</a>","annonce-reserver","../controleurs/control-reserver.php?id=", $trajet_id,"Reserver"); 
+
                     printf("</div>");
 
-                  printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a>","delete-button","supprimer.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon"); 
+                  printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a>","delete-button","../controleurs/control-supprimer_trajet.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon"); 
 
 
                 printf("</div>");
