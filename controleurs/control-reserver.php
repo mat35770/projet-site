@@ -29,10 +29,10 @@ if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
         if ($donnees_trajet['nbr_places_disponibles'] > 0 ){
         $bd->exec("UPDATE trajets SET nbr_places_disponibles=nbr_places_disponibles-1, nbr_places_reservees=nbr_places_reservees+1 WHERE id=$trajet_id");
         $bd->exec("INSERT INTO membres_has_trajets(membres_id, trajets_id) VALUES('".$donnees_membre['id']."', $trajet_id)");
-        header("Location: ../vues/rechercher.php");
+        header("Location: ../vues/vos_reservations.php");
         exit();
         }
-        else{
+        else{            
             header("Location: ../vues/rechercher.php");
             exit();
         }           

@@ -40,7 +40,7 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                     
                     ?>
                 
-                <form method="post" action="ProfilUser.php" enctype="multipart/form-data">
+                    <form method="post" action="profil_user.php" enctype="multipart/form-data">
                     <input type="file" name="idpicture"/>
                     <input type="submit" name="Modifier"/>
                 </form>
@@ -103,19 +103,22 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                            <p>Nom :</p> 
                            <p>Prenom :</p>
                            <p>Année de naissance :</p>
+                           <p>Argent disponible : </p>
                     </div>
                     <div>
-                        <form method="post" action="control-profil-user.php"/>
+                        <form method="post" action="../controleurs/control-profil_user.php"/>
                         <?php
                             //on récupère l'id de l'utilisateur
                             $req1="SELECT * FROM membres WHERE login='".$_SESSION['login']."';";
                             $rep1=$bd->query($req1);
-                            $donnees_membre=$rep1->fetch();                                                    
+                            $donnees_membre=$rep1->fetch();
+                            $_SESSION['id']=$donnees_membre['id'];
                          
                             printf("<p>%s</p>", $donnees_membre['login']);
                             printf("<p>%s</p>", $donnees_membre['nom']);
                             printf("<p>%s</p>", $donnees_membre['prenom']);
-                            printf("<p>%s</p>", $donnees_membre['annee_naissance']);
+                            printf("<p>%d</p>", $donnees_membre['annee_naissance']);
+                            printf("<p>%d</p>", $donnees_membre['argent']);
                         ?>    
                     </div>
                     </div>
@@ -168,8 +171,12 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
                         ?>
                             
                     </div>
+                    
                     </div>
-					<input id="profil-submit" type="submit" name="Modifier" value="ajouter un véhicule"/>
+                            <?php if ($count == 0){
+                              echo '<input id="profil-submit" type="submit" name="Modifier" value="ajouter le véhicule"/>';   
+                            } ?>
+                            <input id="profil-submit" type="submit" name="Argent" value="Ajouter de l'argent"/>					
                 </div>
                                     
                 </div>

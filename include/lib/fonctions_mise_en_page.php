@@ -58,7 +58,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         printf("<h1><b>%d€</b></h1>", $prix);
                         printf("<h3>par place</h3>");
                         printf("<br><h3><b>nombre de places disponibles : %d</b><h3>", $nb_places_libres);
-                        if ($utilisateur_id != $conducteur_id){
+                        if ($utilisateur_id != $conducteur_id && $nb_places_libres > 0){
                             printf("<a class=%s href=%s%d>%s</a>","annonce-reserver","../controleurs/control-reserver.php?id=", $trajet_id,"Reserver"); 
                         }
                     printf("</div>");

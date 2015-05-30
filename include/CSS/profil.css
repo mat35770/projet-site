@@ -73,7 +73,7 @@ div .profil-vehicule h1{
     border: 1px solid #BABABA;
     margin-top: -450px;
     width: 400px;
-    height: 200px;
+    height: 230px;
     padding-left: 10px;
     margin-left: 400px;
     
@@ -155,7 +155,7 @@ div .profil-identite h1{
     height: 450px;
     padding-left: 10px;}
 	
-	.corps {
+.corps {
     width:1000px;
     margin-left: 170px;
     background-color: white;
@@ -250,7 +250,7 @@ div .profil-identite h1{
     background-color: #0ba9ef;
     border-radius: 4px;
     font-size: 18px;
-    margin: 10px 20px 0px 225px;
+    margin: 10px 20px 0px 225px;  
 }
 
 #profil-submit:hover {
