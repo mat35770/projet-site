@@ -2,6 +2,7 @@
 
 include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
+session_start();
 
 $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
 //on test si la personne qui visionne la page est bien un membre du site
