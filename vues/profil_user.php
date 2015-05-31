@@ -39,19 +39,28 @@ if ($count == 0){
             <div class="profil">
                 
                 <div class="profil-1">
-                    <?php if(!isset($_FILES['idpicture'])){
-                    printf("<img src='../include/images/idpicture.jpg' alt='idpicture' />");
-                    }
-                    else{
-                        printf("<img src='%s' alt='idpicture' />", $_FILES['idpicture']['tmp_name']);
-                    }
+                   
                     
-                    ?>
-                
-                    <form method="post" action="profil_user.php" enctype="multipart/form-data">
-                    <input type="file" name="idpicture"/>
-                    <input type="submit" name="Modifier"/>
-                </form>
+                    <?php
+                    $login=$_SESSION['login'];                  
+                                        
+                    if(file_exists("../include/photos/$login.jpg"))  {                      
+                     ?> <img src='../include/photos/<?php echo "$login.jpg"?>'/> <?php     
+                    }
+                    else {
+                      echo "<img src='../include/photos/sans_profil.png'/>";
+                      ?>
+                     <form method='post' action='../controleurs/control-profil_user_photo.php' enctype='multipart/form-data'>
+                     <label for='idpicture'>Choisir une photo </label>
+                     <input type='file' name='idpicture' id='idpicture'/>
+                     <input type='submit' name='ajouter'/>
+                      </form>
+                     <?php
+                   }                
+                   ?>
+                    
+                    
+                    
                 
                 <div class="avis">
                     <h1>
