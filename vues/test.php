@@ -2,6 +2,7 @@
 
 //$annee=  date(Y[,time()]);
 $annee=  date('Y-m-d');
-echo $annee;
-if ("2015-06-05" > $annee	)
-    echo "coucou";
+$date= new DateTime();
+//echo $annee;
+if (new DateTime() > new DateTime('2015-08-27')	)
+   echo "coucou";
