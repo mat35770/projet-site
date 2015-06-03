@@ -16,3 +16,7 @@ if (isset($_POST['marque'])and (!empty($_POST['marque'])) and isset($_POST['mode
         header("Location: ../vues/profil_user.php");       
         exit();
 }
+else{
+    header("Location: ../vues/argent.php");
+    exit();    
+}

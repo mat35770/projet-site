@@ -36,7 +36,7 @@ if (isset($_POST['date'])and (!empty($_POST['date']))){
         $bd->exec ("INSERT INTO trajets VALUES ('','".$donnees_ville_dep['id']."','".$donnees_ville_ar['id']."','".$_POST['date']."',"
              . "'".$_POST['heure']."','".$_POST['nbp']."',0,'".$_POST['prix']."','".$donnees_membre['id']."');");            
         
-        header("Location: ../vues/rechercher.php");
+        header("Location: ../vues/vos_annonces.php");
                                         
     }
 }
