@@ -15,13 +15,16 @@ if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
     $rep1=$bd->query($req1);
     $donnees_trajet=$rep1->fetch();
     
-     //on récupère l'id de l'utilisateur
-    $req2="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
-    $rep2=$bd->query($req2);
-    $donnees_membre=$rep2->fetch();        
+       $req2="SELECT * FROM membres_has_trajets WHERE trajets_id=$trajet_id;";
+       $rep2=$bd->query($req2);      
 
     //si l'utilisateur est aussi le conducteur, suppression du trajet
-    if ($donnees_trajet['membres_id'] === $donnees_membre['id']){
+    if ($donnees_trajet['membres_id'] === $_SESSION['id']){        
+        while ($donnees_membres_has_trajets=$rep2->fetch()){
+            $bd->exec("UPDATE membres SET argent=argent+10 WHERE id='".$donnees_membres_has_trajets['membres_id']."';");
+            $bd->exec("UPDATE membres SET argent=argent-10 WHERE id='".$_SESSION['id']."';");
+            $bd->exec("DELETE FROM membres_has_trajets WHERE trajets_id=$trajet_id AND membres_id='".$donnees_membres_has_trajets['membres_id']."';");
+        }
         $bd->exec("DELETE FROM trajets WHERE id=$trajet_id ");
         header("Location: ../vues/rechercher.php");
         exit();
