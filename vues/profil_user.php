@@ -16,6 +16,7 @@ $bd=connect_db(SERVEUR, UTILISATEUR, MDP);
      <link rel="stylesheet" href="../include/css/profil.css">
      <link rel="stylesheet" href="../include/css/annonce.css">
 	 <link rel="stylesheet" href="../include/css/header.css">
+	 <link rel="stylesheet" href="../include/css/footer.css">
      
     
 </head>
