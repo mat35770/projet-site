@@ -21,14 +21,16 @@ session_start();
      
 </head>
 <body>
-
 <?php include ('../include/lib/header.html');?>
+
+
+
 
 <!--==============================content=================================-->
 
  
 
-	<div class="conteneur">
+	<div id="conteneur">
             <div class="corps">              
                 
                 <?php
