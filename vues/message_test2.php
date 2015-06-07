@@ -6,19 +6,47 @@ include('config.php');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="<?php echo $design; ?>/style.css" rel="stylesheet" title="Style" />
-		        <link rel="stylesheet" href="../include/css/header.css">
-        <link rel="stylesheet" href="../include/css/footer.css">
-		<link rel="stylesheet" href="../include/css/main.css">
+		<link rel="stylesheet" href="../include/css/message.css">
+     <link rel="stylesheet" href="../include/css/header.css">
+     <link rel="stylesheet" href="../include/css/footer.css">
+	 <link rel="stylesheet" href="../include/css/main.css">
         <title>Lecture d'un MP</title>
     </head>
     <body>
-		<?php include ('../include/lib/header.html');?>
-	
-	<div id="conteneur">
+        <div id="conteneur">
 	<div>
             <div class="corps">
-
-<?php
+			<div class="message-header">
+			<div id="boiterec">Boite de reception <?php echo intval($req1->rowCount()); ?></div>
+			<div id="titre">Le clash des gitans</div>
+			<div id="nmess">Nouveau message</div>
+            </div>
+			
+			<div id="message-liste">
+			
+			<?php
+            //On affiche la liste des messages non-lus
+            while($dn1 = $req1->fetch())
+            {
+            ?>
+			<div class="message">
+			<h1><?php echo htmlentities($dn1['title'], ENT_QUOTES, 'UTF-8'); ?> ( <?php echo $dn1['reps']-1; ?> ) </h1><p><?php echo date('d/m/Y H:i:s' ,$dn1['timestamp']); ?></p>
+			<h2><?php echo htmlentities($dn1['login'], ENT_QUOTES, 'UTF-8'); ?></h2>
+			</div>
+			
+			<?php}
+            //On affiche la liste des messages lus
+            while($dn2 = $req2->fetch())
+{
+            ?>
+		    <div class="message">
+			<h1><?php echo htmlentities($dn2['title'], ENT_QUOTES, 'UTF-8'); ?> ( <?php echo $dn2['reps']-1; ?> ) </h1><p><?php echo date('d/m/Y H:i:s' ,$dn2['timestamp']); ?></p>
+			<h2><?php echo htmlentities($dn2['login'], ENT_QUOTES, 'UTF-8'); ?></h2>
+			</div>
+			</div>
+			<div class="converation">
+			<?php
+}
 //On verifie si lutilisateur est connecte
 if(isset($_SESSION['login']))
 {
@@ -108,7 +136,7 @@ while($dn2 = $req2->fetch())
 </table><br />
 <h2>R&eacute;pondre</h2>
 <div class="center">
-    <form action="read_pm.php?id=<?php echo $id; ?>" method="post">
+    <form action="message_test.php?id=<?php echo $id; ?>" method="post">
         <label for="message" class="center">Message</label><br />
         <textarea cols="40" rows="5" name="message" id="message"></textarea><br />
         <input type="submit" value="Envoyer" />
@@ -124,7 +152,7 @@ while($dn2 = $req2->fetch())
         {
 ?>
 <div class="message">Une erreur c'est produite lors de l'envoi du message.<br />
-<a href="read_pm.php?id=<?php echo $id; ?>">Retour &agrave; la discussion</a></div>
+<a href="message_test.php?id=<?php echo $id; ?>">Retour &agrave; la discussion</a></div>
 <?php
         }
 }
@@ -162,7 +190,7 @@ while($dn2 = $req2->fetch())
 </table><br />
 <h2>R&eacute;pondre</h2>
 <div class="center">
-    <form action="read_pm.php?id=<?php echo $id; ?>" method="post">
+    <form action="message_test.php?id=<?php echo $id; ?>" method="post">
         <label for="message" class="center">Message</label><br />
         <textarea cols="40" rows="5" name="message" id="message"></textarea><br />
         <input type="submit" value="Envoyer" />
@@ -192,11 +220,17 @@ else
         echo '<div class="message">Vous devez &ecirc;tre connect&eacute; pour acc&eacute;der &agrave; cette page.</div>';
 }
 ?>
-                <div class="foot"><a href="list_pm.php">Retour &agrave; mes messages priv&eacute;s</a> - <a href="http://www.supportduweb.com/">Support du Web</a></div>
- </div>
-		</div>
-		</div>
-	
-		<?php include ('../include/lib/footer.html');?>      
-	   </body>
+
+
+
+
+
+
+            </div>
+	</div>
+</div>	
+</div>
+<?php include('../include/lib/footer.html');
+?>
+        </body>
 </html>

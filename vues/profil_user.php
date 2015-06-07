@@ -22,7 +22,7 @@ if ($count == 0){
      <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
      <!--<link rel="stylesheet" href="../include/css/style.css">-->
      <link rel="stylesheet" href="../include/css/profil.css">
-     <link rel="stylesheet" href="../include/css/annonce.css">
+     
 	 <link rel="stylesheet" href="../include/css/header.css">
 	 <link rel="stylesheet" href="../include/css/footer.css">
      

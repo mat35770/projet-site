@@ -2,6 +2,7 @@
 include ('../include/lib/fonctions_db.php');
 include ('../include/lib/database.php');
 include ('../include/lib/fonctions_mise_en_page.php');
+include ('../include/lib/avis.php');
 session_start();
 $bd=  connect_db(SERVEUR, UTILISATEUR, MDP); 
 
@@ -28,60 +29,61 @@ if ($count == 0){
 	 <link rel="stylesheet" href="../include/css/header.css">
 	 <link rel="stylesheet" href="../include/css/main.css">
 	 <link rel="stylesheet" href="../include/css/footer.css">
+	 <link rel="stylesheet" href="../include/css/avis.css">
      
 </head>
 <body>
+
 <?php include ('../include/lib/header.html');?>
-
-
-
 
 <!--==============================content=================================-->
 
  
 
-	<div id="conteneur">
+	<div class="conteneur">
             <div class="corps">              
                 
                 <?php
-                                          
+                $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);                           
                 
                 //on récupère l'id de l'utilisateur
                 $req1="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
                 $rep1=$bd->query($req1);
-                $donnees_membre=$rep1->fetch();
-                $membres_id=$donnees_membre['id'];                         
-                           
-                            
-                            
+                $donnees_utilisateur=$rep1->fetch();
+                $utilisateur_id=$donnees_utilisateur['id'];                         
+                
                             //on compte le nombre de trajets
-                            $req2="SELECT * FROM trajets WHERE membres_id=$membres_id";
-                            $rep2=$bd->query($req2);    
-                            $count=$rep2->rowCount();
+                            $req1="SELECT * FROM membres_has_trajets WHERE membres_id='".$utilisateur_id."';";
+                            $rep1=$bd->query($req1);    
+                            $count=$rep1->rowCount();
                             if ($count <= 1)
-                                echo "<h3>Vous avez $count annonce</h3>";
+                                echo "<h3>Vous avez effectué $count trajet</h3>";
                             else 
-                                echo "<h3>Vous avez $count annonces</h3>";
+                                echo "<h3>Vous avez effectué $count trajets</h3>";
                             
                             //pour chaque trajet on affiche les informations
-                            while ($donnees_trajet=$rep2->fetch()){     
+                            while ($donnees_membres_has_trajets=$rep1->fetch()){     
                               
-                                $trajet_id=$donnees_trajet['id'];                                                            
+                                $trajet_id=$donnees_membres_has_trajets['trajets_id'];                                                            
+                                $req3="SELECT * FROM trajets_effectues WHERE id='".$trajet_id."';";
+                                $rep3=$bd->query($req3);
+                                $donnees_trajet=$rep3->fetch();
+                                $conducteur_id=$donnees_trajet['membres_id'];
                                 
                                 //sélection des informations du conducteur                                                             
-                                $req4="SELECT nom, prenom, annee_naissance FROM membres WHERE id='$membres_id'";
+                                $req4="SELECT nom, prenom, annee_naissance FROM membres WHERE id='".$conducteur_id."';";
                                 $rep4=$bd->query($req4);
                                 $donnees_membre=$rep4->fetch();
                                 
                                 
                                 //sélection du modèle de la voiture
-                                $req5="SELECT modele FROM vehicules WHERE membres_id='$membres_id'";
+                                $req5="SELECT modele FROM vehicules WHERE membres_id='".$conducteur_id."';";
                                 $rep5=$bd->query($req5);
                                 $donnees_vehicule=$rep5->fetch();                              
                                 
                                 
                                 //sélection des commentaires du conducteur
-                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='$membres_id'";
+                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='".$conducteur_id."';";
                                 $rep6=$bd->query($req6);
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
@@ -90,7 +92,7 @@ if ($count == 0){
                                  *  Problème de moyenne, seul la première note est affichée
                                  */
                                 $commentaire_id=$donnees2['commentaires_id'];                                
-                                $req7="SELECT note FROM commentaires WHERE id='$commentaire_id'";
+                                $req7="SELECT note FROM commentaires WHERE id='".$commentaire_id."';";
                                 $rep7=$bd->query($req7);
                                 $donnees_note=$rep7->fetch();  
                                 
@@ -108,11 +110,15 @@ if ($count == 0){
                                 $age=$annee-$donnees_membre['annee_naissance'];
                                 
                                 //appel à la fonction qui génère les annonces
+								printf("<div class=%s>","trajets_effectues") ;
+								
+								avis();
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
-                                        $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id);
-										echo "</div>";
+                                        $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $conducteur_id);
+										
+								echo "</div>"; 
                                 
                                 $rep4->closeCursor();
                                 $rep5->closeCursor();

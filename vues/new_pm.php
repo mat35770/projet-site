@@ -41,9 +41,9 @@ if(isset($_POST['title'], $_POST['recip'], $_POST['message']))
                 $recip = $orecip;
                 $message = $omessage;
                 //On verifie que le destinataire existe
-				$rep3= 'select count(id) as recip, id as recipid, (select count(*) from pm) as npm from membres where login="'.$recip.'"';
-				$req3=$bd -> query($rep3);
-				$dn1 = $req3->fetch();
+				$rep1= 'select count(id) as recip, id as recipid, (select count(*) from pm) as npm from membres where login="'.$recip.'"';
+				$req1=$bd -> query($rep1);
+				$dn1 = $req1->fetch();
                 
                 if($dn1['recip']==1)
                 {
@@ -86,10 +86,10 @@ if(isset($_POST['title'], $_POST['recip'], $_POST['message']))
                 $error = 'Un des champs n\'est pas rempli.';
         }
 }
-elseif(isset($_GET['recip']))
+elseif(isset($_POST['recip']))
 {
         //On recupere le nom dutilisateur si disponible
-        $orecip = $_GET['recip'];
+        $orecip = $_POST['recip'];
 }
 if($form)
 {

@@ -6,13 +6,26 @@ include('config.php');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="<?php echo $design; ?>/style.css" rel="stylesheet" title="Style" />
+		
+        <link rel="stylesheet" href="../include/css/header.css">
+        <link rel="stylesheet" href="../include/css/footer.css">
+		<link rel="stylesheet" href="../include/css/main.css">
+		<link rel="stylesheet" href="../include/css/message.css">
+		
         <title>Messages Personnels</title>
     </head>
+	
+	
+	
     <body>
-        <div class="header">
-                <a href="<?php echo $url_home; ?>"><img src="<?php echo $design; ?>/images/logo.png" alt="Espace Membre" /></a>
-            </div>
-        <div class="content">
+	<?php include ('../include/lib/header.html');?>
+	
+	<div id="conteneur">
+	<div>
+            <div class="corps">
+	
+        
+        
 <?php
 //On verifie que lutilisateur est connecte
 if(isset($_SESSION['login']))
@@ -25,10 +38,10 @@ $req1=$bd -> query($rep1);
 $req2=$bd -> query($rep2);
 ?>
 Voici la liste de vos messages:<br />
-<a href="new_pm.php" class="link_new_pm">Nouveau message priv&eacute;</a><br />
+<a class="newmessage" href="new_pm.php" class="link_new_pm">+ Nouveau message</a><br />
 <h3>Messages non-lus(<?php echo intval($req1->rowCount()); ?>):</h3>
-<table>
-        <tr>
+<table class="message-non-lu">
+    <tr>
         <th class="title_cell">Titre</th>
         <th>Nb. R&eacute;ponses</th>
         <th>Participant</th>
@@ -39,11 +52,11 @@ Voici la liste de vos messages:<br />
 while($dn1 = $req1->fetch())
 {
 ?>
-        <tr>
-        <td class="left"><a href="read_pm.php?id=<?php echo $dn1['id']; ?>"><?php echo htmlentities($dn1['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
-        <td><?php echo $dn1['reps']-1; ?></td>
-        <td><a href="profile.php?id=<?php echo $dn1['login']; ?>"><?php echo htmlentities($dn1['login'], ENT_QUOTES, 'UTF-8'); ?></a></td>
-        <td><?php echo date('d/m/Y H:i:s' ,$dn1['timestamp']); ?></td>
+    <tr class="message-c">
+        <td class="message-titre"><a href="read_pm.php?id=<?php echo $dn1['id']; ?>"><?php echo htmlentities($dn1['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
+        <td class="message-nb"><?php echo $dn1['reps']-1; ?></td>
+        <td class="message-participant"><a href="profile.php?id=<?php echo $dn1['login']; ?>"><?php echo htmlentities($dn1['login'], ENT_QUOTES, 'UTF-8'); ?></a></td>
+        <td class="message-date"><?php echo date('d/m/Y H:i:s' ,$dn1['timestamp']); ?></td>
     </tr>
 <?php
 }
@@ -75,7 +88,7 @@ while($dn2 = $req2->fetch())
         <tr>
         <td class="left"><a href="read_pm.php?id=<?php echo $dn2['id']; ?>"><?php echo htmlentities($dn2['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
         <td><?php echo $dn2['reps']-1; ?></td>
-        <td><a href="profile.php?id=<?php echo $dn2['login']; ?>"><?php echo htmlentities($dn2['login'], ENT_QUOTES, 'UTF-8'); ?></a></td>
+        <td><a href="profil_viewer.php?login=<?php echo $dn2['login']; ?>"><?php echo htmlentities($dn2['login'], ENT_QUOTES, 'UTF-8'); ?></a></td>
         <td><?php echo date('d/m/Y H:i:s' ,$dn2['timestamp']); ?></td>
     </tr>
 <?php
@@ -98,7 +111,12 @@ else
         echo 'Vous devez &ecirc;tre connect&eacute; pour acc&eacute;der &agrave; cette page.';
 }
 ?>
-                </div>
+                
                 <div class="foot"><a href="<?php echo $url_home; ?>">Retour &agrave; l'accueil</a> - <a href="http://www.supportduweb.com/">Support du Web</a></div>
-        </body>
+        </div>
+		</div>
+		</div>
+	
+		<?php include ('../include/lib/footer.html');?>
+		</body>
 </html>

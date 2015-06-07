@@ -1,0 +1,25 @@
+.rating a {
+   float: right;
+   color: #aaa;
+   text-decoration: none;
+   font-size: 3em;
+   transition: color .4s;
+}
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+   color: orange;
+   cursor: pointer;
+}
+
+.rating {
+   position: relative;
+   top: -80px;
+}
+
+.rating p {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  padding-left: 5px;
+}

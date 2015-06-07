@@ -1,3 +1,8 @@
+<?php
+$rep1 = "select m1.id, m1.title, m1.timestamp, count(m2.id) as reps, membres.id as userid, membres.login from pm as m1, pm as m2, membres where ((m1.user1='".$_SESSION['id']."' and m1.user1read='no' and membres.id=m1.user2) or (m1.user2='".$_SESSION['id']."' and m1.user2read='no' and membres.id=m1.user1)) and m1.id2='1' and m2.id=m1.id group by m1.id order by m1.id desc";
+
+$req1=$bd -> query($rep1); ?>
+
 <div class="entete">
 				  <a href="rechercher.php"><img src="../include/images/icone-carsharing.gif" alt="">
 				  <p>BassBass CAR</p></a>
@@ -11,9 +16,9 @@
                             <li><a href="profil_user.php">PROFIL</a></li>
                             <li><a href="vos_annonces.php">VOS ANNONCES</a></li>
                             <li><a href="vos_reservations.php">VOS RESERVATIONS</a></li>
-                            <li><a href="#">VOS TRAJETS EFFECTUES</a></li>
-                            <li><a href="list_pm.php">MESSAGES PRIVES</a></li>
-                            <li><a href="authentification.php">SE DECCONNECTER</a></li>
+                            <li><a href="trajets_effectues.php">VOS TRAJETS EFFECTUES</a></li>
+                            <li><a href="list_pm.php">MESSAGES PRIVES(<?php echo intval($req1->rowCount()); ?>) </a></li>
+                            <li><a href="authentification.php">SE DECONNECTER</a></li>
 
                         </ul>
                     </li>

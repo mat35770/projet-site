@@ -1,156 +1,147 @@
+<?php
+include ('../include/lib/fonctions_db.php');
+include ('../include/lib/database.php');
+session_start();    
+$bd=connect_db(SERVEUR, UTILISATEUR, MDP);
+//on test si la personne qui visionne la page est bien un membre du site
+$req="SELECT id FROM membres WHERE login='".$_SESSION['login']."';";
+$rep=$bd->query($req);
+$count=$rep->rowCount();
+if ($count == 0){
+    header("Location: authentification.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
      <title>BassBass Car</title>
      <meta charset="utf-8">
-     <link rel="icon" href="images/icone-carsharing.gif">
-     <link rel="shortcut icon" href="images/icone-carsharing.gif" />
-     <link rel="stylesheet" href="css/style.css">
-     <link rel="stylesheet" href="css/slider.css">
-     <script src="js/jquery.js"></script>
-     <script src="js/jquery.easing.1.3.js"></script>
-     <script src="js/jquery-migrate-1.1.1.js"></script>
-     <script src="js/superfish.js"></script>
-     <script src="js/jquery.equalheights.js"></script>
-     <script src="js/tms-0.4.1.js"></script>
-     <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
-     <script src="js/jquery.ui.totop.js"></script>
-     <script>
-      $(window).load(function(){
-		  $('.slider')._TMS({
-			show:0,
-			pauseOnHover:false,
-			prevBu:'.prev',
-			nextBu:'.next',
-			playBu:false,
-			duration:800,
-			preset:'fade',
-			easing:'easeOutQuad', 
-			pagination:true,//'.pagination',true,'<ul></ul>'
-			pagNums:false,
-			slideshow:8000,
-			numStatus:false,
-			banners:'fade',
-			waitBannerAnimation:false,
-			progressBar:false
-		  })  
-      });
-      
-	  $(window).load (
-		 function(){$('.carousel1').carouFredSel({auto: false,prev: '.prev1',next: '.next1', width: 960, items: {
-			 visible : {min: 4, max: 4},
-		  } 
-		  responsive: false, 
-		  scroll: 1, 
-		  mousewheel: false,
-		  swipe: {onMouse: false, onTouch: false}});
-	  });      
-
-     </script>
-     <!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-         </a>
-      </div>
-    <![endif]-->
-     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <link rel="stylesheet" media="screen" href="css/ie.css">
-    <![endif]-->
+     <link rel="icon" href="../include/images/icone-carsharing.gif">
+     <link rel="shortcut icon" href="../include/images/icone-carsharing.gif" />
+     <!--<link rel="stylesheet" href="../include/css/style.css">-->
+     <link rel="stylesheet" href="../include/css/profil.css">
+     
+	 <link rel="stylesheet" href="../include/css/header.css">
+	 <link rel="stylesheet" href="../include/css/footer.css">
+     
+    
 </head>
 <body>
-<!--==============================header=================================-->
-<header>
-	<div class="container_12">
-		<div class="grid_12">
-           <h1><a href="index.html"><img src="images/logo.png" alt="BIZZ"></a></h1>
-		</div>
-    </div>
-    <nav>
-        <div class="container_12">
-            <div class="grid_12">
-                <ul class="sf-menu">
-                    <li class="rechercher"><a href="index.html">Rechercher</a></li>
-                    
-                    
-                    <li class="proposer"><a href="index-4.html">Proposer</a></li>
-                    <li class="menu-about"><a href="index-1.html">MENU</a>
-                    	<ul>
-                            <li><a href="#">PROFIL</a></li>
-                            <li><a href="#">VOS ANNONCES</a></li>
-                            <li><a href="#">VOS RESERVATIONS</a></li>
-                            <li><a href="#">VOS TRAJETS EFFECTUES</a></li>
-                            <li><a href="#">MESSAGES PRIVES</a></li>
-                            <li><a href="#">SE DECCONNECTER</a></li>
 
-                        </ul>
-                    </li>
-                    
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-    </nav>
-</header>
-
+<?php include ('../include/lib/header.html');?>
+    
 <!--==============================Content=================================-->
 
- 
 <div id="content">
 	<div class="slider-relative">
         <div class="corps">
             <div class="profil">
                 
                 <div class="profil-1">
-                <img src="images/idpicture.jpg" alt="idpicture" />
-                <img class="certified" src="images/certified.jpg" alt="certified" />
+                   
+                    
+                    <?php
+                    $login=$_GET['login'];                  
+                                        
+                    if(file_exists("../include/photos/$login.jpg"))  {                      
+                     ?> <img src='../include/photos/<?php echo "$login.jpg"?>'/> <?php     
+                    }
+                    else {
+                      echo "<img src='../include/photos/sans_profil.png'/>";
+                      ?>
 
+                     <?php
+                   }                
+                   
+                   //requête qui renvoie la moyenne des avis avec 2 chiffres après la virgule
+                    $req4="SELECT AVG(note) AS moyenne FROM commentaires WHERE membres_id='".$_SESSION['id']."';";
+                    $rep4=$bd->query($req4);
+                    $donnees_moyenne=$rep4->fetch();
+                    $moyenne=$donnees_moyenne['moyenne'];
+                    $moyenne= number_format($moyenne,2);
+                   
+                    //reqûete qui renvoie le nombre d'avis
+                    $req3="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."';";
+                    $rep3=$bd->query($req3);
+                    $donnees_commentaires=$rep3->fetch();
+                    $count3=$rep3->rowCount();
+                    
+                    
+                    //requêtes pour connaitre le nombre de personnes par avis
+                    $req_a_5="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=5;";
+                    $rep_a_5=$bd->query($req_a_5);                    
+                    $count_a_5=$rep_a_5->rowCount();
+                    
+                    $req_a_4="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=4;";
+                    $rep_a_4=$bd->query($req_a_4);                    
+                    $count_a_4=$rep_a_4->rowCount();
+                    
+                    $req_a_3="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=3;";
+                    $rep_a_3=$bd->query($req_a_3);                    
+                    $count_a_3=$rep_a_3->rowCount();
+                    
+                    $req_a_2="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=2;";
+                    $rep_a_2=$bd->query($req_a_2);                    
+                    $count_a_2=$rep_a_2->rowCount();
+                    
+                    $req_a_1="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=1;";
+                    $rep_a_1=$bd->query($req_a_1);                    
+                    $count_a_1=$rep_a_1->rowCount();
+                    
+                    $req_a_0="SELECT * FROM commentaires WHERE membres_id='".$_SESSION['id']."' AND note=0;";
+                    $rep_a_0=$bd->query($req_a_0);                    
+                    $count_a_0=$rep_a_0->rowCount();
+                   
+                   ?>                
+                    
+                    
                 <div class="avis">
                     <h1>
-                        <p>Moyenne: 4,2 <img src="images/etoile-avis.png" alt="etoile-avis" /></p>
-                        Avis (total: 16)</h1>
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <p>6/16</p>
+                        <p>Moyenne: <?php echo "$moyenne"; ?> <img src="../include/images/etoile-avis.png" alt="etoile-avis" /></p>
+                        Avis (total: <?php echo "$count3"; ?> )</h1>
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <p> <?php echo "$count_a_5" ?> </p>
                     </br>
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <p>3/16</p>
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <p> <?php echo "$count_a_4" ?> </p>
                     </br>
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <p>2/16</p>
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <p> <?php echo "$count_a_3" ?> </p>
                     </br>
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <p>1/16</p>
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <p> <?php echo "$count_a_2" ?> </p>
                     </br>
-                    <img src="images/etoile-avis.png" alt="etoile-avis" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <p>0/16</p>
+                    <img src="../include/images/etoile-avis.png" alt="etoile-avis" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <p> <?php echo "$count_a_1" ?> </p>
                     </br>
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <img src="images/etoile-avis-grey.png" alt="etoile-avis-grey" />
-                    <p>1/16</p>
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <img src="../include/images/etoile-avis-grey.png" alt="etoile-avis-grey" />
+                    <p> <?php echo "$count_a_0" ?> </p>
                     </br>
                     
                 </div>
@@ -160,34 +151,83 @@
                     <div>
                     <h1>Informations personnelles</h1>
                     <div>
-                           <p>Nom:</p> 
-                           <p>Prenom:</p>
-                           <p>Age:</p>
+                           <p>Login :</p> 
+                           <p>Nom :</p> 
+                           <p>Prenom :</p>
+                           <p>Année de naissance :</p>
+                           <p>Argent disponible : </p>
                     </div>
                     <div>
-                            <p>Fisherman</p>
-                            <p>Larry</p>
-                            <p>23 ans</p>
+                        <form method="post" action="../controleurs/control-profil_user.php"/>
+                        <?php
+                            //on récupère l'id de l'utilisateur
+                            $req1="SELECT * FROM membres WHERE login='".$_GET['login']."';";
+                            $rep1=$bd->query($req1);
+                            $donnees_membre=$rep1->fetch();
+                            $_GET['id']=$donnees_membre['id'];
+                         
+                            printf("<p>%s</p>", $donnees_membre['login']);
+                            printf("<p>%s</p>", $donnees_membre['nom']);
+                            printf("<p>%s</p>", $donnees_membre['prenom']);
+                            printf("<p>%d</p>", $donnees_membre['annee_naissance']);
+                            printf("<p>%d</p>", $donnees_membre['argent']);
+                        ?>    
                     </div>
                     </div>
                 </div>
                 <div class="profil-vehicule">
                     <div>
-                    <h1>Vehicule</h1>
+                    <h1>Véhicule</h1>
                     <div>
-                    <p>Marque:</p>
-                    <p>Confort:</p>
-                    <p>Nombre de place:</p>
-                    <p>Couleur:</p>
+                    <p>Marque :</p>
+                    <p>Modèle :</p>
+                    <p>Couleur :</p>
+                    <p>Année :</p>
+                    
                     </div>
                     <div>
-                        <p>Audi</p>
-                        <p>Luxe</p>
-                        <p>3</p>
-                        <p>Noir</p>
+                        <?php    
+                            //on test si l'utilisateur a une voiture
+                            $membres_id=$donnees_membre['id'];
+                            $req2="SELECT * FROM vehicules WHERE membres_id=$membres_id;";
+                            $rep2=$bd->query($req2);
+                            $donnees_vehicule=$rep2->fetch();
+                            $count=$rep2->rowCount();
+                            
+                            //si la requete présente une erreur on affiche le message d'erreur
+                            if ($rep2===FALSE){
+                                $errInfos=$bd->errorInfo();
+                                echo 'requete échouée'.$errInfos[2];
+                                return false; 
+                            }
+                            //si l'utilisateur n'a pas de voiture 
+                            else if($count == 0){
+                                printf("<p><input type='text' name='marque' /></p>");
+                                printf("<p><input type='text' name='modele' /></p>");                            
+                                printf("<p><input type='text' name='couleur' /></p>");
+                                printf("<p><input type='text' name='annee' /></p>");
+                            
+                            }
+                            
+                            //si l'utilisateur a un véhicule on lui montre ses caractéristiques
+                            // avec une possibilité de les modifier
+                            else{
+                                printf("<p>%s</p>", $donnees_vehicule['marque']);
+                                printf("<p>%s</p>", $donnees_vehicule['modele']);                            
+                                printf("<p>%s</p>", $donnees_vehicule['couleur']);
+                                printf("<p>%s</p>", 
+                                        $donnees_vehicule['annee_mise_en_circulation']);
+                            }
+                        
+                            
+                        ?>
+                            
                     </div>
+                    
                     </div>
+				
                 </div>
+                                    
                 </div>
             </div>
         </div>
@@ -197,24 +237,7 @@
 </div>
 
     
+<?php include ('../include/lib/footer.html');?>
 
-	
-    
-    
-    <!--==============================footer=================================-->
-<footer>
-	<div class="container_12">
-		<div class="grid_8">
-			<span>BassBass Car &copy; 2015 | Privacy Policy | Website  created by Clemouuche</span>
-		</div>
-        <div class="grid_4">
-        	<ul class="soc-icon">
-            	<li><a href="#"><img src="images/icon-3.png" alt=""></a></li>
-                <li><a href="#"><img src="images/icon-2.png" alt=""></a></li>
-                <li><a href="#"><img src="images/icon-1.png" alt=""></a></li>
-            </ul>
-        </div>
-	</div>
-</footer>
-    </body>
+</body>
 </html>

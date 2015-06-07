@@ -1,12 +1,34 @@
+.trajets_effectues div{
+  display: inline-block;
+ 
+}
+
+.rating {
+  margin-left: -200px;
+  padding-right: 50px;
+  padding-top: 50px;
+  
+}
+
+
+.annonce {
+  display: inline-block;
+}
+
+.corps {
+  padding-left: 268px;
+}
+
 .annonce {
   font-family: Arial,Helvetica,sans-serif;
   width: 750px;
   padding-top: 20px;
-  margin-left: 268px;
+  margin-left: 0px;
   border-bottom: solid #BABABA 1px;
   padding-bottom: 10px;
   padding-left: 10px;
   margin-right: 20px;
+  
   
 }
 

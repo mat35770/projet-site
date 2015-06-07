@@ -71,6 +71,7 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
 
                 printf("</div>");
                 printf("</div>");
+				
                 
 }
 
