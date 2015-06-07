@@ -202,10 +202,10 @@ if ($count == 0){
                             }
                             //si l'utilisateur n'a pas de voiture 
                             else if($count == 0){
-                                printf("<p><input type='text' name='marque' /></p>");
-                                printf("<p><input type='text' name='modele' /></p>");                            
-                                printf("<p><input type='text' name='couleur' /></p>");
-                                printf("<p><input type='text' name='annee' /></p>");
+                                printf("<p>%s</p>", $donnees_vehicule['marque']);
+                                printf("<p>%s</p>", $donnees_vehicule['modele']);                            
+                                printf("<p>%s</p>", $donnees_vehicule['couleur']);
+                                printf("<p>%s</p>", $donnees_vehicule['annee_mise_en_circulation']);
                             
                             }
                             
@@ -215,8 +215,7 @@ if ($count == 0){
                                 printf("<p>%s</p>", $donnees_vehicule['marque']);
                                 printf("<p>%s</p>", $donnees_vehicule['modele']);                            
                                 printf("<p>%s</p>", $donnees_vehicule['couleur']);
-                                printf("<p>%s</p>", 
-                                        $donnees_vehicule['annee_mise_en_circulation']);
+                                printf("<p>%s</p>", $donnees_vehicule['annee_mise_en_circulation']);
                             }
                         
                             
