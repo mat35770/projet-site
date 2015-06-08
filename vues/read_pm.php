@@ -72,8 +72,13 @@ if(isset($_POST['message']) and $_POST['message']!='')
 
         $rep6='update pm set user'.$user_partic.'read="yes" where id="'.$id.'" and id2="1"';
         $req6=$bd->query($rep6);
-        $rep7='insert into pm (id, id2, title, user1, user2, message, timestamp, user1read, user2read)values("'.$id.'", "'.(intval($rel2)+1).'", "", "'.$_SESSION['id'].'", "", "'.$message.'", "'.time().'", "", "")' and $req6;
-        $req7=$bd-> query($rep7);
+		if($dn1['user1']==$_SESSION['id']){
+        $rep7='insert into pm (id, id2, title, user1, user2, message, timestamp, user1read, user2read)values("'.$id.'", "'.(intval($rel2)+1).'", "", "'.$_SESSION['id'].'", "'.$dn1['user2'].'", "'.$message.'", "'.time().'", "", "")' and $req6;
+        }
+		else if($dn1['user2']==$_SESSION['id']){
+		        $rep7='insert into pm (id, id2, title, user1, user2, message, timestamp, user1read, user2read)values("'.$id.'", "'.(intval($rel2)+1).'", "", "'.$_SESSION['id'].'", "'.$dn1['user1'].'", "'.$message.'", "'.time().'", "", "")' and $req6;
+		}
+		$req7=$bd-> query($rep7);
 		if($req6)
         {
 

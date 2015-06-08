@@ -31,13 +31,14 @@ function annonce($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $v
                 
 }
 
-function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $voiture, $prix, $nb_places_libres, $ville_depart, $ville_arrivee,$trajet_id, $utilisateur_id, $conducteur_id)
+function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heure, $voiture, $prix, $nb_places_libres, $ville_depart, $ville_arrivee,$trajet_id, $utilisateur_id, $conducteur_id, $login)
 {
                 printf("<div class=%s>","annonce");
                     printf("<div class=%s>", "annonce-personne");
                         printf("<div class=%s><img src=%s alt=%s /></div>", "photo-annonce","../include/images/idpicture.jpg", "idpicture");
                         printf("<div>");
                             printf("<h1><b>%s %s</b></h1>",$prenom, $nom);
+							printf("<p>%s</p>", $login);
                             printf("<p>%d ans</p>", $age);
                         printf("</div>");
                         

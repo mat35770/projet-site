@@ -69,7 +69,7 @@ if ($count == 0){
                                 $trajet_id=$donnees_trajet['id'];                                                            
                                 
                                 //sélection des informations du conducteur                                                             
-                                $req4="SELECT nom, prenom, annee_naissance FROM membres WHERE id='$membres_id'";
+                                $req4="SELECT nom, prenom, annee_naissance, login FROM membres WHERE id='$membres_id'";
                                 $rep4=$bd->query($req4);
                                 $donnees_membre=$rep4->fetch();
                                 
@@ -111,7 +111,7 @@ if ($count == 0){
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
-                                        $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id);
+                                        $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id, $donnees_membre['login']);
 										echo "</div>";
                                 
                                 $rep4->closeCursor();
