@@ -74,7 +74,18 @@ if ($count == 0){
                                 $donnees_membre=$rep4->fetch();
 								      
 							
-								
+				//requête qui renvoie la moyenne des avis avec 2 chiffres après la virgule
+                                $req4="SELECT AVG(note) AS moyenne FROM commentaires WHERE membres_id=$membres_id;";
+                                $rep4=$bd->query($req4);
+                                $donnees_moyenne=$rep4->fetch();
+                                $moyenne=$donnees_moyenne['moyenne'];
+                                $moyenne= number_format($moyenne,2);
+                                
+                                //reqûete qui renvoie le nombre d'avis
+                                $req3="SELECT * FROM commentaires WHERE membres_id=$membres_id;";
+                                $rep3=$bd->query($req3);
+                                $donnees_commentaires=$rep3->fetch();
+                                $count3=$rep3->rowCount();				
                                 
                                 
                                 //sélection du modèle de la voiture
@@ -131,7 +142,7 @@ if ($count == 0){
 								}}
 								echo "</ul></div>";
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
-                                        $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
+                                        $moyenne, $count3, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
                                         $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id, $donnees_membre['login']);
 										echo "</div>";

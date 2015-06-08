@@ -102,27 +102,32 @@ if ($count == 0){
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
                                 
-                                /*
-                                 *  Problème de moyenne, seul la première note est affichée
-                                 */
-                                $commentaire_id=$donnees2['commentaires_id'];                                
-                                $req7="SELECT note FROM commentaires WHERE id='$commentaire_id'";
-                                $rep7=$bd->query($req7);
-                                $donnees_note=$rep7->fetch();  
+                                //requête qui renvoie la moyenne des avis avec 2 chiffres après la virgule
+                                $req4="SELECT AVG(note) AS moyenne FROM commentaires WHERE membres_id=$membres_id;";
+                                $rep4=$bd->query($req4);
+                                $donnees_moyenne=$rep4->fetch();
+                                $moyenne=$donnees_moyenne['moyenne'];
+                                $moyenne= number_format($moyenne,2);
+                                
+                                //reqûete qui renvoie le nombre d'avis
+                                $req3="SELECT * FROM commentaires WHERE membres_id=$membres_id;";
+                                $rep3=$bd->query($req3);
+                                $donnees_commentaires=$rep3->fetch();
+                                $count3=$rep3->rowCount();
+                               
                                 
                                 $annee=date('Y');
                                 $age=$annee-$donnees_membre['annee_naissance'];
                                 
                                 //appel à la fonction qui génère les annonces
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
-                                        $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
+                                        $moyenne, $count3, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
                                         $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $membres_id, $donnees_membre['login']);
                                 
                                 $rep4->closeCursor();
                                 $rep5->closeCursor();
-                                $rep6->closeCursor();
-                                $rep7->closeCursor();
+                                $rep6->closeCursor();                                
                                 
                             }
                             $rep1->closeCursor();

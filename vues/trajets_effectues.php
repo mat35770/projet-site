@@ -88,6 +88,19 @@ if ($count == 0){
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
                                 
+                                //requête qui renvoie la moyenne des avis avec 2 chiffres après la virgule
+                                $req4="SELECT AVG(note) AS moyenne FROM commentaires WHERE membres_id=$conducteur_id;";
+                                $rep4=$bd->query($req4);
+                                $donnees_moyenne=$rep4->fetch();
+                                $moyenne=$donnees_moyenne['moyenne'];
+                                $moyenne= number_format($moyenne,2);
+                                
+                                //reqûete qui renvoie le nombre d'avis
+                                $req3="SELECT * FROM commentaires WHERE membres_id=$conducteur_id;";
+                                $rep3=$bd->query($req3);
+                                $donnees_commentaires=$rep3->fetch();
+                                $count3=$rep3->rowCount();
+                                
                                 /*
                                  *  Problème de moyenne, seul la première note est affichée
                                  */
@@ -112,9 +125,9 @@ if ($count == 0){
                                 //appel à la fonction qui génère les annonces
 								printf("<div class=%s>","trajets_effectues") ;
 								
-								avis();
+								avis($conducteur_id);
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
-                                        $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
+                                        $moyenne, $count3, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
                                         $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $conducteur_id, $donnees_membre['login']);
 										
