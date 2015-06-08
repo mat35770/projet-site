@@ -117,11 +117,11 @@ if ($count == 0){
 								printf("<ul><p> Liste des passagers : </p>");
 								
 							    //sélection des id des passagers du trajet
-							    $req2="SELECT membres_id FROM membres_has_trajets WHERE trajets_id=$trajet_id;";
-                                $rep2=$bd->query($req2);
+							    $req11="SELECT membres_id FROM membres_has_trajets WHERE trajets_id=$trajet_id;";
+                                $rep11=$bd->query($req11);
 
 								
-								while($id_passagers=$rep2->fetch()){
+								while($id_passagers=$rep11->fetch()){
 								$id_passagers=$id_passagers['membres_id'];
 								$req10="SELECT * FROM membres WHERE id='$id_passagers'";
 								$rep10=$bd->query($req10);
@@ -143,6 +143,7 @@ if ($count == 0){
                                 $rep7->closeCursor();
                                 
                             }
+							echo "</div>";
                             $rep1->closeCursor();
                             
                 ?>

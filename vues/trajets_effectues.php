@@ -53,7 +53,7 @@ if ($count == 0){
                 $utilisateur_id=$donnees_utilisateur['id'];                         
                 
                             //on compte le nombre de trajets
-                            $req1="SELECT * FROM membres_has_trajets WHERE membres_id='".$utilisateur_id."';";
+                            $req1="SELECT * FROM membres_has_trajets_effectues WHERE membres_id='".$utilisateur_id."';";
                             $rep1=$bd->query($req1);    
                             $count=$rep1->rowCount();
                             if ($count <= 1)
@@ -119,6 +119,7 @@ if ($count == 0){
                                         $ville_dep, $ville_ar,$trajet_id, $utilisateur_id, $conducteur_id, $donnees_membre['login']);
 										
 								echo "</div>"; 
+								echo "</div>"; 
                                 
                                 $rep4->closeCursor();
                                 $rep5->closeCursor();
@@ -127,6 +128,7 @@ if ($count == 0){
                                 
                             }
                             $rep1->closeCursor();
+							 
                             
                 ?>
             </div> 
