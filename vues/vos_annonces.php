@@ -72,6 +72,9 @@ if ($count == 0){
                                 $req4="SELECT nom, prenom, annee_naissance, login FROM membres WHERE id='$membres_id'";
                                 $rep4=$bd->query($req4);
                                 $donnees_membre=$rep4->fetch();
+								      
+							
+								
                                 
                                 
                                 //sélection du modèle de la voiture
@@ -108,11 +111,31 @@ if ($count == 0){
                                 $age=$annee-$donnees_membre['annee_naissance'];
                                 
                                 //appel à la fonction qui génère les annonces
+								
+								printf("<div class=%s>","vos_annonces") ;
+								printf("<div class=%s>", "passagers");
+								printf("<ul><p> Liste des passagers : </p>");
+								
+							    //sélection des id des passagers du trajet
+							    $req2="SELECT membres_id FROM membres_has_trajets WHERE trajets_id=$trajet_id;";
+                                $rep2=$bd->query($req2);
+
+								
+								while($id_passagers=$rep2->fetch()){
+								$id_passagers=$id_passagers['membres_id'];
+								$req10="SELECT * FROM membres WHERE id='$id_passagers'";
+								$rep10=$bd->query($req10);
+									
+								while($donnees_passagers=$rep10->fetch()){
+									printf("<li> %s %s %s %d ans</li>",$donnees_passagers['nom'], $donnees_passagers['prenom'], $donnees_passagers['login'], $annee-$donnees_passagers['annee_naissance']);
+								}}
+								echo "</ul></div>";
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
                                         $donnees_note['note'], $count2, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
                                         $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id, $donnees_membre['login']);
 										echo "</div>";
+										
                                 
                                 $rep4->closeCursor();
                                 $rep5->closeCursor();
