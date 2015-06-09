@@ -44,6 +44,7 @@ if ($count == 0){
             <div class="corps">              
                 
                 <?php
+				$pageactuelle="trajets_effectues";
                 $bd=  connect_db(SERVEUR, UTILISATEUR, MDP);                           
                 
                 //on récupère l'id de l'utilisateur

@@ -68,15 +68,15 @@ function annonce_pers($prenom, $nom, $age, $moyenne_avis, $nb_avis, $date, $heur
                         if ($utilisateur_id != $conducteur_id && $nb_places_libres > 0){
                             printf("<a class=%s href=%s%d>%s</a>","annonce-reserver","../controleurs/control-reserver.php?id=", $trajet_id,"Reserver");                             
                         }
-                        if ($conducteur_id == $utilisateur_id){
+                        if ($conducteur_id == $utilisateur_id && $pageactuelle=!"trajets_effectues"){
                         printf("<a class=%s href=%s%d>%s</a>","annonce-reserver","../controleurs/control-trajet_effectue.php?id=", $trajet_id,"trajet effectué");
                         }
                     printf("</div>");
-                    if ($conducteur_id == $utilisateur_id){
-                  printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a>","delete-button","../controleurs/control-supprimer_trajet.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon");                  
+                    if ($conducteur_id == $utilisateur_id && $pageactuelle=!"trajets_effectues"){
+                  printf("<div><a class=%s href=%s%d><img src=%s alt=%s></a></div>","delete-button","../controleurs/control-supprimer_trajet.php?id=", $trajet_id,"../include/images/delete-icon.png","delete-icon");                  
                     }
 
-                printf("</div>");
+                
                 printf("</div>");
 				
                 
