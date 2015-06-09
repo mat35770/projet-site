@@ -81,7 +81,7 @@ if ($count == 0){
                                 
                                 
                                 //sélection des commentaires du conducteur
-                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='$conducteur_id'";
+                                $req6="SELECT id FROM commentaires WHERE membres_id='$conducteur_id'";
                                 $rep6=$bd->query($req6);
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
@@ -89,7 +89,7 @@ if ($count == 0){
                                 /*
                                  *  Problème de moyenne, seul la première note est affichée
                                  */
-                                $commentaire_id=$donnees2['commentaires_id'];                                
+                                $commentaire_id=$donnees2['id'];                                
                                 $req7="SELECT note FROM commentaires WHERE id='$commentaire_id'";
                                 $rep7=$bd->query($req7);
                                 $donnees_note=$rep7->fetch();  

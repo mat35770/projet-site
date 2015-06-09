@@ -1,5 +1,6 @@
 <?php
 include ('../include/lib/fonctions_db.php');
+include ('../include/lib/avis.php');
 include ('../include/lib/database.php');
 include ('../include/lib/fonctions_mise_en_page.php');
 session_start();
@@ -28,6 +29,7 @@ if ($count == 0){
 	 <link rel="stylesheet" href="../include/css/header.css">
 	 <link rel="stylesheet" href="../include/css/main.css">
 	 <link rel="stylesheet" href="../include/css/footer.css">
+	 <link rel="stylesheet" href="../include/css/avis.css">
      
 </head>
 <body>
@@ -95,7 +97,7 @@ if ($count == 0){
                                 
                                 
                                 //sélection des commentaires du conducteur
-                                $req6="SELECT commentaires_id FROM membres_has_commentaires WHERE membres_id='$membres_id'";
+                                $req6="SELECT id FROM commentaires WHERE membres_id='$membres_id'";
                                 $rep6=$bd->query($req6);
                                 $donnees2=$rep6->fetch();
                                 $count2=$rep6->rowCount();                                 
@@ -103,7 +105,7 @@ if ($count == 0){
                                 /*
                                  *  Problème de moyenne, seul la première note est affichée
                                  */
-                                $commentaire_id=$donnees2['commentaires_id'];                                
+                                $commentaire_id=$donnees2['id'];                                
                                 $req7="SELECT note FROM commentaires WHERE id='$commentaire_id'";
                                 $rep7=$bd->query($req7);
                                 $donnees_note=$rep7->fetch();  
@@ -138,11 +140,14 @@ if ($count == 0){
 								$rep10=$bd->query($req10);
 									
 								while($donnees_passagers=$rep10->fetch()){
+									printf("<div class=%s>","ratrat");
 									printf("<li> %s %s %s %d ans</li>",$donnees_passagers['nom'], $donnees_passagers['prenom'], $donnees_passagers['login'], $annee-$donnees_passagers['annee_naissance']);
+									avis2($id_passagers);
+									printf("</div>");
 								}}
 								echo "</ul></div>";
                                 annonce_pers($donnees_membre['prenom'], $donnees_membre['nom'], $age,
-                                        $moyenne, $count3, $donnees_trajet['date'], $donnees_trajet['heure'],
+                                        $donnees_note['note'], $count3, $donnees_trajet['date'], $donnees_trajet['heure'],
                                         $donnees_vehicule['modele'], $donnees_trajet['prix'], $donnees_trajet['nbr_places_disponibles'], 
                                         $ville_dep, $ville_ar,$trajet_id, $membres_id, $membres_id, $donnees_membre['login']);
 										echo "</div>";

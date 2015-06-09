@@ -13,7 +13,7 @@ if (isset($_SESSION['login']) and (!empty($_SESSION['login']))){
     
     //on récupère les données du trajet
     $bd->exec("INSERT INTO commentaires (note, membres_id) VALUES ($note,$conducteur_id)");
-    header("Location: ../vues/profil_user.php");
+    header("Location: ../vues/vos_annonces.php");
     exit();
 }
 else{

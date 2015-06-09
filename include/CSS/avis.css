@@ -23,3 +23,33 @@
   font-size: 16px;
   padding-left: 5px;
 }
+
+.rating2 a {
+   float: right;
+   color: #aaa;
+   text-decoration: none;
+   font-size: 3em;
+   transition: color .4s;
+}
+.rating2 a:hover,
+.rating2 a:focus,
+.rating2 a:hover ~ a,
+.rating2 a:focus ~ a {
+   color: orange;
+   cursor: pointer;
+}
+
+.rating2 {
+
+}
+
+.ratrat div {
+   position: absolute;
+   right: 900px;
+   
+   
+}
+
+.ratrat li {
+  
+}
